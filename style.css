@@ -886,3 +886,58 @@ section {
 .hero-btn:hover {
   background: #c49d6a;
 }
+.products-hero {
+  padding: 70px 20px;
+  text-align: center;
+  background: #f5efe6; /* Beige */
+}
+
+.products-hero h1 {
+  font-size: 45px;
+  margin-bottom: 15px;
+  color: #2b2b2b;
+}
+
+.products-hero p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: auto;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Products Grid */
+.products-section {
+  padding: 70px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+
+  background: #faf7f2; /* Light beige */
+}
+
+/* Product Cards */
+.product-card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #2b2b2b;
+}
+
+.product-card p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
