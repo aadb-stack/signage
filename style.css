@@ -759,3 +759,59 @@ section {
   height: 55px;
   display: block;
 }
+/* HEADER */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: black;
+}
+
+/* Hamburger Button */
+.hamburger {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Logo */
+.logo {
+  height: 55px;
+}
+
+/* MOBILE MENU FIX */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Hidden off screen */
+  width: 250px;
+  height: 100vh;
+  background: #111;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* When Active */
+.mobile-menu.active {
+  left: 0; /* Slide in */
+}
+
+/* Menu Links */
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+.mobile-menu a:hover {
+  color: orange;
+}
