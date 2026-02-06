@@ -725,3 +725,37 @@ section {
 section {
   padding-top: 120px;
 }
+/* ===============================
+   HEADER FIX (Hamburger Left + Logo Right)
+================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between; /* pushes logo to right */
+  align-items: center;
+
+  padding: 15px 25px;
+  background: rgba(248, 245, 239, 0.97);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 9999;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  font-size: 34px;
+  cursor: pointer;
+  color: #556b2f;
+  display: block !important; /* force visible */
+}
+
+/* Logo */
+.logo {
+  height: 55px;
+  display: block;
+}
