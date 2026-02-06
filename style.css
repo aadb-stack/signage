@@ -815,3 +815,63 @@ section {
 .mobile-menu a:hover {
   color: orange;
 }
+/* HERO SECTION FIX */
+.hero {
+  height: 90vh; /* Full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url("https://i.ibb.co/vCR7yLzZ/2026-01-05.webp") no-repeat center;
+  background-size: cover;
+  padding: 40px;
+}
+
+/* Dark Overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 700px;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.hero-content h2 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Button */
+.hero-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 25px;
+  background: orange;
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.hero-btn:hover {
+  background: white;
+}
