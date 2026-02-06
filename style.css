@@ -1,0 +1,727 @@
+/* ==========================================
+   Sign Makers Pune — Premium Beige Theme
+   Beige + Olive Pastel Luxury Design
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap');
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8f5ef; /* Soft Beige */
+  color: #2c2c2c;
+  scroll-behavior: smooth;
+}
+
+/* ==========================================
+   HEADER (Premium Minimal)
+========================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 60px;
+  background: rgba(248, 245, 239, 0.95);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  height: 55px;
+}
+
+/* NAV LINKS */
+nav a {
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #3b3b3b;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: #556b2f; /* Olive Green */
+}
+
+/* ==========================================
+   HERO SECTION (Luxury Beige Gradient)
+========================================== */
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+
+  background: linear-gradient(
+    to bottom,
+    #f8f5ef,
+    #f1ede4
+  );
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 55px;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 18px auto;
+  font-size: 18px;
+  color: rgba(44, 44, 44, 0.75);
+  line-height: 1.7;
+}
+
+/* BUTTON (Olive Premium) */
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  margin-top: 30px;
+
+  border-radius: 50px;
+  background: #556b2f;
+  color: white;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0px 8px 25px rgba(85, 107, 47, 0.25);
+}
+
+.btn:hover {
+  background: #3f5220;
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+.section {
+  padding: 95px 90px;
+}
+
+.section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  margin-bottom: 18px;
+  color: #2c2c2c;
+}
+
+.section p {
+  max-width: 850px;
+  color: rgba(44, 44, 44, 0.75);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* LIGHT SECTION */
+.light {
+  background: transparent;
+}
+
+
+/* ==========================================
+   GRID + PREMIUM CARDS
+========================================== */
+
+.grid,
+.services-grid {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.card,
+.service-box {
+  padding: 30px 25px;
+  border-radius: 18px;
+
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.06);
+
+  transition: 0.35s ease;
+}
+
+.card:hover,
+.service-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(85, 107, 47, 0.4);
+  box-shadow: 0px 15px 35px rgba(85, 107, 47, 0.15);
+}
+
+/* Headings Inside Cards */
+.card h3,
+.service-box h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #556b2f;
+}
+
+/* Card Text */
+.card p,
+.service-box p {
+  font-size: 14px;
+  color: rgba(44, 44, 44, 0.7);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   FORM STYLE
+========================================== */
+
+form {
+  max-width: 520px;
+  margin-top: 35px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 14px 15px;
+  margin-bottom: 18px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  background: white;
+  color: #2c2c2c;
+  font-size: 15px;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #556b2f;
+  box-shadow: 0px 0px 12px rgba(85, 107, 47, 0.25);
+}
+
+/* ==========================================
+   CONTACT LINKS
+========================================== */
+
+.contact-link {
+  color: #556b2f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* MAP BOX */
+.map-box {
+  margin-top: 25px;
+  height: 260px;
+  border-radius: 18px;
+
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(44, 44, 44, 0.6);
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+  padding: 25px;
+  text-align: center;
+  font-size: 14px;
+
+  color: rgba(44, 44, 44, 0.55);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fdfbf7;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE + HAMBURGER
+========================================== */
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #556b2f;
+}
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 15px 25px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  nav {
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    width: 220px;
+
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 20px;
+    border-radius: 15px;
+
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 12px 30px rgba(0,0,0,0.12);
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  nav a {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .section {
+    padding: 70px 25px;
+  }
+
+  .grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===========================
+   HERO SECTION WITH BACKGROUND IMAGE
+=========================== */
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 140px 20px;
+
+  background-image: url("https://images.pexels.com/photos/3810792/pexels-photo-3810792.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  color: #2c2c2c;
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  /* Beige Overlay so text stays readable */
+  background: rgba(248, 245, 239, 0.60);
+  backdrop-filter: blur(4px);
+}
+
+.hero h1,
+.hero p,
+.hero .btn {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 55px;
+  font-family: "Playfair Display", serif;
+  color: #2c2c2c;
+}
+
+.hero p {
+  font-size: 18px;
+  color: rgba(44, 44, 44, 0.85);
+  margin-top: 14px;
+}
+/* ==========================================
+   CENTER ALIGN ALL SECTION HEADINGS + TEXT
+========================================== */
+
+.section {
+  text-align: center;
+}
+
+.section h2 {
+  text-align: center;
+}
+
+.section p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+/* Center Cards Text */
+.card,
+.service-box {
+  text-align: center;
+}
+.grid,
+.services-grid {
+  justify-content: center;
+}
+/* ==========================================
+   GOOGLE REVIEWS TESTIMONIAL SLIDER
+========================================== */
+
+.testimonial-slider {
+  margin-top: 50px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* Review Box */
+.testimonial {
+  display: none;
+  padding: 40px;
+  border-radius: 20px;
+
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.08);
+
+  text-align: center;
+}
+
+/* Active Review */
+.testimonial.active {
+  display: block;
+}
+
+/* Review Text */
+.testimonial p {
+  font-size: 17px;
+  font-style: italic;
+  color: rgba(44, 44, 44, 0.8);
+  line-height: 1.8;
+}
+
+/* Reviewer Name */
+.testimonial h4 {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #556b2f;
+}
+/* ==========================================
+   CONTACT BOX GRID (Premium Layout)
+========================================== */
+
+.contact-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Each Contact Box */
+.contact-box {
+  padding: 35px 25px;
+  border-radius: 20px;
+
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.07);
+
+  text-align: center;
+  transition: 0.35s ease;
+}
+
+.contact-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(85, 107, 47, 0.4);
+  box-shadow: 0px 15px 35px rgba(85, 107, 47, 0.15);
+}
+
+.contact-box h3 {
+  margin: 12px 0;
+  font-size: 18px;
+  color: #556b2f;
+}
+
+.contact-box p {
+  font-size: 14px;
+  color: rgba(44, 44, 44, 0.75);
+  line-height: 1.6;
+}
+/* /* ==========================================
+   ABOUT SECTION — FULL PREMIUM UNIFORM STYLE
+========================================== */
+
+.about-intro {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-intro p {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(44, 44, 44, 0.75);
+}
+
+/* Highlight Cards */
+.about-highlights {
+  margin-top: 60px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-card {
+  padding: 35px 25px;
+  border-radius: 20px;
+
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0px 10px 28px rgba(0, 0, 0, 0.06);
+  text-align: center;
+
+  transition: 0.35s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(85, 107, 47, 0.35);
+  box-shadow: 0px 15px 35px rgba(85, 107, 47, 0.15);
+}
+
+.about-card h3 {
+  margin: 12px 0;
+  font-size: 18px;
+  color: #556b2f;
+}
+
+.about-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(44, 44, 44, 0.7);
+}
+
+/* Services List Block */
+.about-services {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.about-services h3 {
+  font-size: 22px;
+  color: #556b2f;
+  margin-bottom: 25px;
+}
+
+.about-services ul {
+  list-style: none;
+  padding: 0;
+  max-width: 520px;
+  margin: auto;
+}
+
+.about-services ul li {
+  background: white;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.about-closing {
+  margin-top: 35px;
+  font-size: 16px;
+  color: rgba(44,  44, 44, 0.75);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+
+  .contact-grid {
+    grid-template-columns: 1fr; /* vertical stacking */
+  }
+
+}
+
+/* /* ==========================================
+   ELEGANT PASTEL SHADES (Luxury Tonal Flow)
+   Subtle Beige Variations — NOT Comic
+========================================== */
+
+/* ABOUT — Warm Ivory Beige */
+#about {
+  background: #fbf9f4;
+}
+
+/* SERVICES — Slightly Deeper Cream */
+#services {
+  background: #f7f3ec;
+}
+
+/* PRODUCTS — Soft Sand Beige */
+#products {
+  background: #f5f0e7;
+}
+
+/* PROJECTS — Muted Warm Gray-Beige */
+#projects {
+  background: #f3efe8;
+}
+
+/* TESTIMONIALS — Elegant Pale Olive Tint */
+#testimonials {
+  background: #f4f6f0;
+}
+
+/* CONTACT — Clean Light Ivory */
+#contact {
+  background: #faf8f3;
+}
+section {
+  transition: background 0.6s ease;
+}
+section {
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+@media (max-width: 768px) {
+  .hero {
+    background-position: top;
+    padding: 110px 15px;
+  }
+}
+/* ==========================================
+   HEADER: Hamburger Left + Logo Right
+========================================== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 35px;
+
+  background: rgba(248, 245, 239, 0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+
+  backdrop-filter: blur(10px);
+}
+
+/* Logo Right */
+.logo {
+  height: 55px;
+}
+
+/* Hamburger Left */
+.hamburger {
+  font-size: 32px;
+  cursor: pointer;
+  color: #556b2f;
+}
+
+/* ==========================================
+   SLIDE MENU (Hamburger Navigation)
+========================================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* hidden */
+  width: 260px;
+  height: 100vh;
+
+  background: #fffdf8;
+  box-shadow: 8px 0px 25px rgba(0,0,0,0.12);
+
+  padding-top: 100px;
+  padding-left: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  transition: 0.4s ease;
+}
+
+/* Active Menu */
+.mobile-menu.active {
+  left: 0;
+}
+
+/* Menu Links */
+.mobile-menu a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  transition: 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: #556b2f;
+}
+section {
+  padding-top: 120px;
+}
