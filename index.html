@@ -2,44 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Makers </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Makers</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header">
 
-  <!-- Hamburger LEFT -->
-  <div class="hamburger" onclick="toggleMenu()">
-    ☰
-  </div>
+    <!-- Hamburger LEFT -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
+      ☰
+    </button>
 
-  <!-- Logo RIGHT -->
-  <img
-    src="https://i.ibb.co/vCR7yLzZ/2026-01-05.webp"
-    class="logo"
-    alt="Sign Makers Logo"
-  >
+    <!-- Logo RIGHT -->
+    <img
+      src="https://i.ibb.co/vCR7yLzZ/2026-01-05.webp"
+      class="logo"
+      alt="Sign Makers Logo"
+    >
 
-</header>
+  </header>
 
-<!-- Slide Menu -->
-<div id="mobileMenu" class="mobile-menu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
-  <a href="projects.html">Projects</a>
-  <a href="reviews.html">Testimonials</a>
-  <a href="contact.html">Contact</a>
-</div>
+  <!-- MOBILE SLIDE MENU -->
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <h1>Premium Sign Boards in Pune</h1>
+    <p>
+      Sign Makers provides LED boards, acrylic signage, neon signs,
+      and complete shop branding solutions in Shukrawar Peth.
+    </p>
+  </section>
 
-<!-- SECTION 1: HOME -->
-<section id="home" class="hero">
-  <h1>Premium Sign Boards in Pune</h1>
-  <p>
-    Sign Makers provides LED boards, acrylic signage, neon signs,
-    and shop branding solutions in Shukrawar Peth.
-  </p>
-</section>
+  <!-- MENU TOGGLE SCRIPT -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
