@@ -965,3 +965,23 @@ section {
 }
 -height: 1.5;
 }
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px;   /* smaller elegant */
+    font-weight: 600;
+  }
+
+  .hero-content p {
+    font-size: 15px;   /* not too big */
+    line-height: 1.5;
+  }
+
+  .hero-btn {
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+}
