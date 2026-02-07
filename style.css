@@ -43,3 +43,241 @@ section {
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
+.logo {
+  height: 55px;
+}
+/* ===========================
+   MOBILE SLIDE MENU
+=========================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+
+  width: 260px;
+  height: 100vh;
+
+  background: #f5efe6;
+  padding-top: 90px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  transition: 0.35s ease;
+  z-index: 1500;
+
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+.mobile-menu a {
+  font-size: 18px;
+  padding-left: 25px;
+  color: #2b2b2b;
+}
+
+.mobile-menu a:hover {
+  color: #c49d6a;
+}
+/* ===========================
+   HOME HERO SECTION
+=========================== */
+
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+
+  background: url("https://images.unsplash.com/photo-1581578731548-c64695cc6952")
+    no-repeat center;
+  background-size: cover;
+
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 245, 235, 0.88);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 650px;
+  margin: auto;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 17px;
+  color: #555;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin-top: 22px;
+
+  padding: 10px 22px;
+  background: #d8b98a;
+  color: white;
+
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.hero-btn:hover {
+  background: #c49d6a;
+}
+/* ===========================
+   INNER PAGE HEADINGS
+=========================== */
+
+.page-hero {
+  text-align: center;
+  background: #f5efe6;
+  padding: 80px 20px;
+}
+
+.page-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.page-hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 17px;
+  color: #555;
+}
+/* ===========================
+   CARDS GRID SECTION
+=========================== */
+
+.grid-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+
+  padding: 70px 40px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #666;
+}
+/* ===========================
+   TESTIMONIALS
+=========================== */
+
+.testimonials {
+  background: #f5efe6;
+  text-align: center;
+}
+
+.testimonials h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.testimonial-box {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+/* ===========================
+   CONTACT FORM
+=========================== */
+
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 35px;
+
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.contact-form button {
+  background: #d8b98a;
+  color: white;
+  border: none;
+
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #c49d6a;
+}
+/* ===========================
+   FOOTER
+=========================== */
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #f5efe6;
+  color: #555;
+  font-size: 14px;
+}
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 55px 15px;
+  }
+}
