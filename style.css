@@ -18,6 +18,10 @@ body {
   color: #2c2c2c;
   scroll-behavior: smooth;
 }
+/* Prevent sections from sticking under sticky header */
+main {
+  padding-top: 90px;
+}
 
 /* ==========================================
    HEADER (Premium Minimal)
