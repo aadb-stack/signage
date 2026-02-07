@@ -651,4 +651,60 @@ footer {
     max-width: 300px;
   }
 }
+/* ==========================================
+   PERFECT MOBILE HERO FIX (Full Page Center)
+========================================== */
+
+@media (max-width: 768px) {
+
+  /* Fixed header height */
+  .site-header {
+    height: 70px;
+    padding: 12px 18px;
+  }
+
+  /* Hero becomes full screen minus header */
+  .hero {
+    min-height: calc(100vh - 70px) !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    padding: 0 15px !important;
+    margin-top: 70px !important; /* pushes below header */
+    height: auto !important;
+  }
+
+  /* Hero content fits perfectly */
+  .hero-content {
+    width: 100% !important;
+    max-width: 95% !important;
+
+    padding: 28px 20px !important;
+    border-radius: 18px;
+
+    text-align: center;
+  }
+
+  /* Heading fits screen */
+  .hero-content h1 {
+    font-size: 26px !important;
+    line-height: 1.25;
+  }
+
+  /* Paragraph clean */
+  .hero-content p {
+    font-size: 15px !important;
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+
+  /* Button spacing */
+  .hero-btn {
+    margin-top: 18px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
 
