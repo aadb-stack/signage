@@ -64,54 +64,75 @@ nav a:hover {
 /* ==========================================
    HERO SECTION (Luxury Beige Gradient)
 ========================================== */
-
 .hero {
   text-align: center;
-  padding: 120px 20px;
+  padding: 95px 20px;
 
-  background: linear-gradient(
-    to bottom,
-    #f8f5ef,
-    #f1ede4
-  );
+  /* Real signage workshop background */
+  background: url("https://images.unsplash.com/photo-1581578731548-c64695cc6952")
+    no-repeat center;
+  background-size: cover;
+
+  position: relative;
 }
 
+/* Beige overlay for luxury readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 245, 239, 0.88);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 750px;
+  margin: auto;
+}
 .hero h1 {
   font-family: "Playfair Display", serif;
-  font-size: 55px;
+  font-size: 50px;
   font-weight: 700;
   color: #2c2c2c;
 }
 
 .hero p {
-  max-width: 720px;
-  margin: 18px auto;
-  font-size: 18px;
+  max-width: 650px;
+  margin: 16px auto;
+  font-size: 17px;
   color: rgba(44, 44, 44, 0.75);
-  line-height: 1.7;
+  line-height: 1.6;
 }
+/* ==========================================
+   MOBILE OPTIMIZATION
+========================================== */
 
-/* BUTTON (Olive Premium) */
-.btn {
-  display: inline-block;
-  padding: 14px 34px;
-  margin-top: 30px;
+@media (max-width: 768px) {
+  header {
+    padding: 15px 25px;
+  }
 
-  border-radius: 50px;
-  background: #556b2f;
-  color: white;
+  nav {
+    display: none; /* hide desktop links */
+  }
 
-  font-weight: 600;
-  font-size: 15px;
+  .hero {
+    padding: 55px 15px;
+  }
 
-  text-decoration: none;
-  transition: 0.3s ease;
-  box-shadow: 0px 8px 25px rgba(85, 107, 47, 0.25);
-}
+  .hero h1 {
+    font-size: 28px; /* smaller + elegant */
+  }
 
-.btn:hover {
-  background: #3f5220;
-  transform: translateY(-3px);
+  .hero p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .btn {
+    padding: 12px 26px;
+    font-size: 14px;
+  }
 }
 
 /* ==========================================
