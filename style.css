@@ -321,55 +321,60 @@ footer {
     grid-template-columns: 1fr;
   }
 }
-/* ===========================
-   HERO SECTION WITH BACKGROUND IMAGE
-=========================== */
-
 .hero {
-  position: relative;
+  padding: 70px 20px;
   text-align: center;
-  padding: 140px 20px;
 
-  background-image: url("https://images.pexels.com/photos/3810792/pexels-photo-3810792.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  /* Real signage workshop background */
+  background: url("https://images.unsplash.com/photo-1581578731548-c64695cc6952")
+    no-repeat center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 
-  color: #2c2c2c;
+  position: relative;
 }
 
-
+/* Beige premium overlay */
 .hero::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-
-  /* Beige Overlay so text stays readable */
-  background: rgba(248, 245, 239, 0.60);
-  backdrop-filter: blur(4px);
+  inset: 0;
+  background: rgba(250, 245, 235, 0.88);
 }
 
-.hero h1,
-.hero p,
-.hero .btn {
+.hero-content {
   position: relative;
-  z-index: 1;
+  max-width: 600px;
+  margin: auto;
 }
 
-.hero h1 {
-  font-size: 55px;
-  font-family: "Playfair Display", serif;
-  color: #2c2c2c;
+/* Desktop font */
+.hero-content h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 10px;
 }
 
-.hero p {
-  font-size: 18px;
-  color: rgba(44, 44, 44, 0.85);
-  margin-top: 14px;
+.hero-content p {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 18px;
 }
+
+/* Button */
+.hero-btn {
+  padding: 10px 22px;
+  background: #d8b98a;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.hero-btn:hover {
+  background: #c49d6a;
+}
+
 /* ==========================================
    CENTER ALIGN ALL SECTION HEADINGS + TEXT
 ========================================== */
