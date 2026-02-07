@@ -619,5 +619,62 @@ footer {
     font-size: 28px;
   }
 }
+/* ==========================================
+   CLOSE BUTTON FIX (Always Visible)
+========================================== */
+
+.close-menu {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  background: none;
+  border: none;
+
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+
+  color: #556b2f;
+
+  z-index: 999999 !important;
+  display: block !important;
+}
+
+.close-menu:hover {
+  color: #3f5220;
+}
+/* ==========================================
+   MOBILE MENU CLEAN LINK FIX (No Emojis)
+========================================== */
+
+.mobile-menu {
+  list-style: none !important;
+}
+
+.mobile-menu a {
+  text-decoration: none !important;
+  font-style: normal !important;
+
+  padding: 10px 0;
+  display: block;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  color: #2c2c2c;
+
+  /* Removes any emoji/icon spacing */
+  background: none !important;
+}
+
+/* Prevent pseudo icons */
+.mobile-menu a::before {
+  content: "" !important;
+}
+/* Menu Always Above Page Content */
+.mobile-menu {
+  z-index: 999998 !important;
+}
 
 
