@@ -480,3 +480,28 @@ footer {
   background: #fdfbf7;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
+/* ==========================================
+   HAMBURGER + MENU FIX (Always Clickable)
+========================================== */
+
+/* Header always above everything */
+.site-header {
+  z-index: 100000 !important;
+  position: fixed;
+}
+
+/* Hamburger always clickable */
+.hamburger {
+  position: relative;
+  z-index: 100001 !important;
+}
+
+/* Mobile Menu always above hero/image */
+.mobile-menu {
+  z-index: 100002 !important;
+}
+
+/* Hero overlay must NOT block clicks */
+.hero::before {
+  pointer-events: none !important;
+}
