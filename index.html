@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Makers</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Force CSS Refresh -->
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 
 <body>
 
- <!-- HEADER -->
-<header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header">
 
-  <!-- Hamburger LEFT -->
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
-    ☰
-  </button>
+    <!-- Hamburger LEFT -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">
+      ☰
+    </button>
 
-  <!-- Logo RIGHT -->
-  <a href="index.html" class="logo-link">
-    <img
-      src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
-      alt="Sign Makers Pune Logo"
-      class="logo"
-    />
-  </a>
-
-</header>
-
+    <!-- Logo RIGHT -->
+    <a href="index.html" class="logo-link">
+      <img
+        src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
+        alt="Sign Makers Pune Logo"
+        class="logo"
+      />
+    </a>
 
   </header>
 
   <!-- MOBILE SLIDE MENU -->
   <nav id="mobileMenu" class="mobile-menu">
+
+    <!-- Close Button -->
+    <button class="close-menu" onclick="toggleMenu()">✖</button>
+
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -40,18 +43,18 @@
     <a href="projects.html">Projects</a>
     <a href="reviews.html">Testimonials</a>
     <a href="contact.html">Contact</a>
+
   </nav>
 
-<section id="home" class="hero">
-  <div class="hero-content">
-    <h1>Welcome to Sign Makers</h1>
-    <p>Premium Sign Boards & Shop Branding in Pune</p>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Sign Makers</h1>
+      <p>Premium Sign Boards & Shop Branding in Pune</p>
 
-    <a href="products.html" class="hero-btn">Explore Products</a>
-  </div>
-</section>
-
-
+      <a href="products.html" class="hero-btn">Explore Products</a>
+    </div>
+  </section>
 
   <!-- MENU TOGGLE SCRIPT -->
   <script>
