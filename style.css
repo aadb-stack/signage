@@ -769,5 +769,39 @@ footer {
     display: block !important;
   }
 }
+/* ==========================================
+   PROJECTS MOBILE GRID FIX (REAL FIX)
+========================================== */
+
+@media (max-width: 768px) {
+
+  /* Fix section padding */
+  .section {
+    padding: 70px 18px !important;
+  }
+
+  /* Projects grid becomes 2 columns */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .projects-grid img {
+    height: 160px !important;
+    border-radius: 14px !important;
+  }
+}
+
+/* Extra Small Phones → 1 column */
+@media (max-width: 480px) {
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .projects-grid img {
+    height: auto !important;
+  }
+}
 
 
