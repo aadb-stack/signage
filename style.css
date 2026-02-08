@@ -803,5 +803,27 @@ footer {
     height: auto !important;
   }
 }
+/* ==========================================
+   PROJECTS FULL IMAGE DISPLAY (No Crop)
+========================================== */
+
+.projects-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;        /* Uniform card size */
+  object-fit: contain !important; /* FULL image visible */
+
+  background: #ffffff;
+  padding: 10px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.projects-grid img:hover {
+  transform: scale(1.03);
+}
 
 
