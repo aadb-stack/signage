@@ -825,5 +825,24 @@ footer {
 .projects-grid img:hover {
   transform: scale(1.03);
 }
+/* ==========================================
+   PROJECTS MOBILE FULL IMAGE FIX (NO CROP)
+========================================== */
+
+@media (max-width: 768px) {
+
+  .projects-grid img {
+    height: auto !important;          /* Remove forced height */
+    width: 100% !important;
+
+    object-fit: contain !important;   /* Show full image */
+    aspect-ratio: auto !important;    /* Let image keep natural shape */
+
+    background: white;
+    padding: 8px;
+
+    display: block;
+  }
+}
 
 
