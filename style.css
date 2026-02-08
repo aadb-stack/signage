@@ -769,11 +769,12 @@ footer {
   transition: 0.3s ease;
 }
 /* ==========================================
-   PROJECTS GRID — FINAL PROFESSIONAL FIX
+   PROJECTS GRID — FINAL CLEAN VERSION
 ========================================== */
 
 .projects-grid {
   margin-top: 55px;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
@@ -783,30 +784,29 @@ footer {
   margin-right: auto;
 }
 
-/* TILE BOX (Same Size Always) */
+/* TILE BOX (Uniform Size Always) */
 .project-item {
   height: 230px;
   background: white;
 
   border-radius: 18px;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  overflow: hidden;
-  padding: 12px;
-
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.06);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* IMAGE FITS INSIDE TILE (No Crop) */
+/* IMAGE INSIDE TILE (Perfect Grid) */
 .project-item img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 
-  object-fit: contain;
+  object-fit: cover; /* Prevent tall JCB breaking layout */
   display: block;
 }
 
@@ -816,16 +816,18 @@ footer {
   transition: 0.3s ease;
 }
 
-  .projects-grid img {
-    padding: 10px;
-  }
-}
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+========================================== */
+
+/* Laptop: 3 per row */
 @media (max-width: 1100px) {
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Tablet: 2 per row */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -836,6 +838,7 @@ footer {
   }
 }
 
+/* Phone: 1 per row */
 @media (max-width: 480px) {
   .projects-grid {
     grid-template-columns: 1fr;
@@ -843,6 +846,13 @@ footer {
 
   .project-item {
     height: auto;
-    padding: 15px;
+  }
+
+  .project-item img {
+    height: auto;
+    object-fit: contain; /* Full image on phone */
+    background: white;
+    padding: 12px;
   }
 }
+
