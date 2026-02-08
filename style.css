@@ -677,9 +677,11 @@ footer {
   z-index: 999998 !important;
 }
 /* ==========================================
-   PROJECTS GALLERY (3–4 Images Per Row)
+   PROJECTS GALLERY — FINAL CLEAN VERSION
+   Full Images + Responsive Grid (No Crop)
 ========================================== */
 
+/* GRID LAYOUT */
 .projects-grid {
   margin-top: 55px;
 
@@ -690,159 +692,64 @@ footer {
   margin-left: auto;
   margin-right: auto;
 
-  /* Default = 4 images per row */
+  /* Desktop: 4 per row */
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* Project Images */
+/* PROJECT IMAGES (FULL IMAGE, NOT CHOPPED) */
 .projects-grid img {
   width: 100%;
-  height: 220px;
+  height: auto;                /* No forced height */
+  object-fit: contain;         /* FULL image visible */
 
-  object-fit: cover;
+  background: #ffffff;
+  padding: 10px;
+
   border-radius: 18px;
-
   border: 1px solid rgba(0, 0, 0, 0.08);
 
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
 
-  transition: 0.35s ease;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
-/* Hover Premium Effect */
+/* Hover Effect */
 .projects-grid img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0px 18px 40px rgba(85, 107, 47, 0.18);
 }
-/* Laptop = 3 images per row */
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+========================================== */
+
+/* Laptop: 3 per row */
 @media (max-width: 1100px) {
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Tablet = 2 images per row */
+/* Tablet: 2 per row */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .projects-grid img {
-    height: 200px;
+    padding: 8px;
   }
 }
 
-/* Phone = 1 image per row */
+/* Phone: 1 per row */
 @media (max-width: 480px) {
   .projects-grid {
     grid-template-columns: 1fr;
   }
 
   .projects-grid img {
-    height: 190px;
+    padding: 10px;
   }
 }
-/* ==========================================
-   PROJECTS MOBILE FIX (Hard Override)
-========================================== */
-
-@media (max-width: 600px) {
-
-  .projects-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
-
-    width: 100% !important;
-    padding: 0 15px !important;
-    margin: 0 auto !important;
-  }
-
-  .projects-grid img {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 3 !important;
-
-    border-radius: 16px !important;
-    object-fit: cover !important;
-    display: block !important;
-  }
-}
-/* ==========================================
-   PROJECTS MOBILE GRID FIX (REAL FIX)
-========================================== */
-
-@media (max-width: 768px) {
-
-  /* Fix section padding */
-  .section {
-    padding: 70px 18px !important;
-  }
-
-  /* Projects grid becomes 2 columns */
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 14px !important;
-  }
-
-  .projects-grid img {
-    height: 160px !important;
-    border-radius: 14px !important;
-  }
-}
-
-/* Extra Small Phones → 1 column */
-@media (max-width: 480px) {
-
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .projects-grid img {
-    height: auto !important;
-  }
-}
-/* ==========================================
-   PROJECTS FULL IMAGE DISPLAY (No Crop)
-========================================== */
-
-.projects-grid img {
-  width: 100%;
-  aspect-ratio: 4 / 3;        /* Uniform card size */
-  object-fit: contain !important; /* FULL image visible */
-
-  background: #ffffff;
-  padding: 10px;
-
-  border-radius: 18px;
-  border: 1px solid rgba(0,0,0,0.08);
-
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.06);
-  transition: 0.3s ease;
-}
-
-.projects-grid img:hover {
-  transform: scale(1.03);
-}
-/* ==========================================
-   PROJECTS MOBILE FULL IMAGE FIX (NO CROP)
-========================================== */
-
-@media (max-width: 768px) {
-
-  .projects-grid img {
-    height: auto !important;          /* Remove forced height */
-    width: 100% !important;
-
-    object-fit: contain !important;   /* Show full image */
-    aspect-ratio: auto !important;    /* Let image keep natural shape */
-
-    background: white;
-    padding: 8px;
-
-    display: block;
-  }
-}
-
-
