@@ -768,6 +768,53 @@ footer {
 
   transition: 0.3s ease;
 }
+/* ==========================================
+   PROJECTS GRID — FINAL PROFESSIONAL FIX
+========================================== */
+
+.projects-grid {
+  margin-top: 55px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+
+  max-width: 1250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TILE BOX (Same Size Always) */
+.project-item {
+  height: 230px;
+  background: white;
+
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  padding: 12px;
+
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.06);
+}
+
+/* IMAGE FITS INSIDE TILE (No Crop) */
+.project-item img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+  display: block;
+}
+
+/* Hover Effect */
+.project-item:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease;
+}
 
   .projects-grid img {
     padding: 10px;
