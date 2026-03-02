@@ -744,29 +744,30 @@ footer {
   }
 }
 /* ==========================================
-   SERVICES MOBILE ALIGNMENT FIX
+   SERVICES TRUE CENTER FIX (MOBILE)
 ========================================== */
 
 @media (max-width: 768px) {
 
-  /* Reduce side padding of section */
+  /* Fix section horizontal spacing */
   #services.section {
-    padding: 60px 20px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 
-  /* Make services grid perfectly centered */
+  /* Force grid to be centered */
   .services-grid {
+    width: 100% !important;
+    max-width: 500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
     grid-template-columns: 1fr !important;
-    gap: 20px;
-    max-width: 500px;
-    margin: 40px auto 0 auto;
   }
 
-  /* Make service cards consistent */
+  /* Ensure cards don’t shift */
   .service-box {
     width: 100%;
-    min-height: 220px;
-    padding: 28px 22px;
   }
 
 }
