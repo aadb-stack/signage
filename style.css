@@ -357,7 +357,6 @@ body {
 /* ===============================
    PRODUCTS GRID
 ================================ */
-
 .products-section {
   padding: 85px 60px;
   background: #faf7f2;
@@ -365,7 +364,11 @@ body {
   display: grid;
   gap: 30px;
 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* FORCE VERTICAL STACK */
+  grid-template-columns: 1fr;
+
+  max-width: 850px;       /* keeps it elegant */
+  margin: 0 auto;         /* center it */
 }
 /* ===============================
    TESTIMONIALS (Luxury Reviews)
