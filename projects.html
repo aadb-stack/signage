@@ -30,9 +30,9 @@
     /* ── Uniform Grid ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      max-width: 1200px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 4px;
     }
@@ -42,9 +42,10 @@
       position: relative;
       border-radius: 14px;
       overflow: hidden;
-      background: #e8e2d8;
-      /* Perfect square tiles */
-      aspect-ratio: 1 / 1;
+      background: #f0ece4;
+      aspect-ratio: 4 / 3;
+
+
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(0,0,0,0.09);
       transition: transform 0.32s cubic-bezier(0.22,1,0.36,1),
@@ -52,7 +53,7 @@
     }
 
     .project-item:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-5px);
       box-shadow: 0 16px 38px rgba(85,107,47,0.18);
       z-index: 2;
     }
@@ -66,7 +67,7 @@
     }
 
     .project-item:hover img {
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
 
     /* Hover overlay */
@@ -115,10 +116,10 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
-    /* ── Video tile — spans 2 cols ── */
+    /* ── Video tile — same height as image tiles, spans 1 col ── */
     .project-item.video-tile {
-      aspect-ratio: 16 / 9;
-      grid-column: span 2;
+      aspect-ratio: 4 / 3;
+      grid-column: span 1;
     }
     .project-item.video-tile video {
       width: 100%;
@@ -129,7 +130,7 @@
     /* hide zoom icon on video */
     .project-item.video-tile .zoom-icon { display: none; }
     .project-item.video-tile::after { display: none; }
-    .project-item.video-tile:hover { transform: translateY(-4px); }
+    .project-item.video-tile:hover { transform: translateY(-5px); }
 
     /* ══════════════════════════════════════
        LIGHTBOX
@@ -165,13 +166,13 @@
       max-width: 90vw;
       max-height: 85vh;
       width: auto;
-      height: auto;
+      height: 100%;
       border-radius: 14px;
       box-shadow: 0 30px 80px rgba(0,0,0,0.6);
       transform: scale(0.92);
       transition: transform 0.32s cubic-bezier(0.22,1,0.36,1);
       display: block;
-      object-fit: contain;
+      object-fit: cover;
     }
     .lightbox.open .lightbox-img {
       transform: scale(1);
@@ -252,7 +253,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .projects-grid { grid-template-columns: repeat(3, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -261,7 +262,7 @@
         gap: 10px;
       }
       .project-item.video-tile {
-        grid-column: span 2;
+        grid-column: span 1;
       }
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
