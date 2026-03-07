@@ -18,8 +18,3 @@ function toggleMenu() {
   let menu = document.getElementById("mobileMenu");
   menu.classList.toggle("active");
 }
-
-  // Expose for manual controls if needed
-  window.nextSlide = () => showSlide(current + 1);
-  window.prevSlide = () => showSlide(current - 1);
-})();
