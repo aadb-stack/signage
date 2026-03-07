@@ -2,22 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products | Sign Makers Pune</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── View Products Button ── */
+    .view-products-btn {
+      margin-top: 18px;
+      padding: 11px 28px;
+      background: var(--olive, #556b2f);
+      color: #fff;
+      font-family: "Jost", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(85,107,47,0.28);
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .view-products-btn:hover {
+      background: #3f5220;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(85,107,47,0.38);
+    }
+
+    /* ── Gallery Overlay ── */
+    .gallery-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,14,8,0.82);
+      z-index: 200000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .gallery-overlay.open {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+
+    .gallery-modal {
+      background: #faf8f3;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 36px 32px 32px;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+
+    .gallery-title {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      color: #2c2c2c;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .gallery-title::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--olive, #556b2f);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: #556b2f;
+      cursor: pointer;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s, transform 0.25s;
+    }
+    .gallery-close:hover { background: rgba(85,107,47,0.1); transform: rotate(90deg); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.2s, box-shadow 0.28s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.04);
+      border-color: rgba(85,107,47,0.5);
+      box-shadow: 0 10px 28px rgba(85,107,47,0.2);
+    }
+
+    @media (max-width: 560px) {
+      .gallery-modal { padding: 28px 16px 24px; border-radius: 16px; }
+      .gallery-grid  { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .gallery-title { font-size: 18px; }
+    }
+
+    /* ── Single Image Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4,6,4,0.94);
+      z-index: 300000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 18px; right: 22px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-size: 36px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      line-height: 1;
+    }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover,
+    .lightbox-next:hover { background: rgba(255,255,255,0.24); }
+  </style>
 </head>
-
 <body>
-
   <!-- HEADER -->
   <header class="site-header">
-
-    <!-- Hamburger Left -->
-    <div class="hamburger" onclick="toggleMenu()">
-      ☰
-    </div>
-
-  <!-- Logo RIGHT -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
     <a href="index.html" class="logo-link">
       <img
         src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
@@ -25,81 +185,239 @@
         class="logo"
       />
     </a>
-
   </header>
 
   <nav id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="toggleMenu()">✖</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <!-- CLOSE BUTTON -->
-  <button class="close-menu" onclick="toggleMenu()">✖</button>
-
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
-  <a href="projects.html">Projects</a>
-  <a href="reviews.html">Testimonials</a>
-  <a href="contact.html">Contact</a>
-
-</nav>
-
-
- <!-- PRODUCTS PAGE CONTENT -->
-<section class="products-hero">
-  <h1>Our Products</h1>
-  <p>
-    At Sign Makers, we provide premium quality signage solutions that enhance
-    your shopfront, improve visibility, and elevate your brand presence across Pune.
-  </p>
-</section>
-
-<section class="products-section">
-
-  <div class="product-card">
-    <h2>LED Sign Boards</h2>
+  <!-- PRODUCTS PAGE CONTENT -->
+  <section class="products-hero">
+    <h1>Our Products</h1>
     <p>
-      Our LED sign boards are bright, durable, and perfect for outdoor visibility.
-      They are ideal for shops, restaurants, showrooms, and businesses looking to
-      attract customers even at night.
+      At Sign Makers, we provide premium quality signage solutions that enhance
+      your shopfront, improve visibility, and elevate your brand presence across Pune.
     </p>
-  </div>
+  </section>
 
-  <div class="product-card">
-    <h2>Name Plates</h2>
-    <p>
-      We design custom nameplates for offices, societies, reception areas, and
-      professional branding needs with high-quality finishing and premium materials.
-    </p>
-  </div>
+  <section class="products-section">
+    <div class="product-card">
+      <h2>Steel / Titanium Letters</h2>
+      <p>
+        Elevate your brand with premium Steel and Titanium 3D letters, available
+        with or without LED backlighting. These high-durability metal letters deliver
+        a bold, sophisticated look — perfect for storefronts, office lobbies, hoardings,
+        and luxury brand installations.
+      </p>
+      <button class="view-products-btn" onclick="openGallery('steel')">View Products</button>
+    </div>
 
-  <div class="product-card">
-    <h2>Acrylic Sign Boards & Logos</h2>
-    <p>
-      Acrylic signage offers a clean, premium, and modern look. Perfect for logo displays,
-      brand signage, and professional installations with excellent finishing and durability.
-    </p>
-  </div>
+    <!-- STEEL/TITANIUM GALLERY OVERLAY -->
+    <div id="galleryOverlay-steel" class="gallery-overlay" onclick="closeGalleryOutside(event, 'steel')">
+      <div class="gallery-modal">
+        <button class="gallery-close" onclick="closeGallery('steel')">✕</button>
+        <h3 class="gallery-title">Steel / Titanium Letters</h3>
+        <div class="gallery-grid">
+          <img src="https://i.ibb.co/d4c1X2G4/Whats-App-Image-2026-03-05-at-11-37-27-PM-1.jpg" alt="Steel Titanium Letter 1" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/wF366b6R/Whats-App-Image-2026-03-05-at-11-37-26-PM-7.jpg" alt="Steel Titanium Letter 2" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/BHYK4CQq/Whats-App-Image-2026-03-05-at-11-37-26-PM-6.jpg" alt="Steel Titanium Letter 3" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/GvhmdVX4/Whats-App-Image-2026-03-05-at-11-37-26-PM-5.jpg" alt="Steel Titanium Letter 4" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/NgjMDwDq/Whats-App-Image-2026-03-05-at-11-37-26-PM-4.jpg" alt="Steel Titanium Letter 5" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/fVC6FvkV/Whats-App-Image-2026-03-05-at-11-37-25-PM-7.jpg" alt="Steel Titanium Letter 6" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/6c5vfW23/Whats-App-Image-2026-03-05-at-11-37-25-PM-6.jpg" alt="Steel Titanium Letter 7" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/xKk34kSM/Whats-App-Image-2026-03-05-at-11-37-25-PM-5.jpg" alt="Steel Titanium Letter 8" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/s97RtrRw/Whats-App-Image-2026-03-05-at-11-37-25-PM-4.jpg" alt="Steel Titanium Letter 9" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/bybSx6x/Whats-App-Image-2026-03-05-at-11-37-24-PM-5.jpg" alt="Steel Titanium Letter 10" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/99xD9m72/Whats-App-Image-2026-03-05-at-11-37-24-PM-4.jpg" alt="Steel Titanium Letter 11" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/HL6dyNCm/Whats-App-Image-2026-03-05-at-11-37-24-PM-3.jpg" alt="Steel Titanium Letter 12" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/MkPg8n95/Whats-App-Image-2026-03-05-at-11-37-23-PM-6.jpg" alt="Steel Titanium Letter 13" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/prb3J7YG/Whats-App-Image-2026-03-05-at-11-37-23-PM-5.jpg" alt="Steel Titanium Letter 14" onclick="openLightbox(this, 'steel')">
+          <img src="https://i.ibb.co/cScq4X91/Whats-App-Image-2026-03-05-at-11-37-23-PM-4.jpg" alt="Steel Titanium Letter 15" onclick="openLightbox(this, 'steel')">
+        </div>
+      </div>
+    </div>
 
-  <div class="product-card">
-    <h2>Shop Branding Solutions</h2>
-    <p>
-      We provide complete shop branding services including board design,
-      installation, wall graphics, and customized signage. From small shops to
-      large businesses, we create a professional storefront that stands out.
-    </p>
-  </div>
-  
-  <div class="product-card">
-    <h2>Digital Printing</h2>
-    <p>
-      High-quality digital printing services for banners, flex, posters, and promotional
-      materials. Perfect for events, advertisements, and marketing campaigns with vibrant
-      colors and sharp resolution.
-    </p>
-  </div>
-</section>
-  <!-- SCRIPT -->
+    <!-- SINGLE IMAGE LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
+      <img id="lightboxImg" src="" alt="">
+      <button class="lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
+    </div>
+
+    <div class="product-card">
+      <h2>Name Plates</h2>
+      <p>
+        We design custom nameplates for offices, societies, reception areas, and
+        professional branding needs with high-quality finishing and premium materials.
+      </p>
+      <button class="view-products-btn" onclick="openGallery('nameplates')">View Products</button>
+    </div>
+
+    <!-- NAME PLATES GALLERY OVERLAY -->
+    <div id="galleryOverlay-nameplates" class="gallery-overlay" onclick="closeGalleryOutside(event, 'nameplates')">
+      <div class="gallery-modal">
+        <button class="gallery-close" onclick="closeGallery('nameplates')">✕</button>
+        <h3 class="gallery-title">Name Plates</h3>
+        <div class="gallery-grid">
+          <img src="https://i.ibb.co/xq9wgNRF/Whats-App-Image-2026-03-02-at-10-58-49-PM.jpg" alt="Name Plate 1" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/x87G631W/Whats-App-Image-2026-03-02-at-10-58-46-PM.jpg" alt="Name Plate 2" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/9mkqmCNj/Whats-App-Image-2026-03-02-at-10-58-43-PM.jpg" alt="Name Plate 3" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/mFYrXr3q/Whats-App-Image-2026-03-02-at-10-58-41-PM.jpg" alt="Name Plate 4" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/yFP29nmr/Whats-App-Image-2026-03-02-at-10-58-38-PM-1.jpg" alt="Name Plate 5" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/S4gkf6tz/Whats-App-Image-2026-03-02-at-10-58-38-PM.jpg" alt="Name Plate 6" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/TBr6mxkC/Whats-App-Image-2026-03-02-at-10-58-37-PM-3.jpg" alt="Name Plate 7" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/5WS1sBmm/Whats-App-Image-2026-03-02-at-10-58-37-PM-2.jpg" alt="Name Plate 8" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/sJqjYG0q/Whats-App-Image-2026-03-02-at-10-58-37-PM-1.jpg" alt="Name Plate 9" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/RkrJfRFP/Whats-App-Image-2026-03-02-at-10-58-37-PM.jpg" alt="Name Plate 10" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/QvYzhD7p/Whats-App-Image-2026-03-02-at-10-58-36-PM.jpg" alt="Name Plate 11" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/39Fh8p85/Whats-App-Image-2026-03-02-at-10-58-35-PM.jpg" alt="Name Plate 12" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/XxnXH6R0/Whats-App-Image-2026-03-02-at-10-58-34-PM-1.jpg" alt="Name Plate 13" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/mFFfXX8F/Whats-App-Image-2026-03-02-at-10-58-34-PM.jpg" alt="Name Plate 14" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/qLnt896v/Whats-App-Image-2026-03-02-at-10-58-32-PM.jpg" alt="Name Plate 15" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/66DCKg0/Whats-App-Image-2026-03-02-at-10-58-31-PM-1.jpg" alt="Name Plate 16" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/vCvw0fQv/Whats-App-Image-2026-03-02-at-10-58-31-PM.jpg" alt="Name Plate 17" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/YT17yD8T/Whats-App-Image-2026-03-02-at-10-58-30-PM-2.jpg" alt="Name Plate 18" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/qLdTrVwn/Whats-App-Image-2026-03-02-at-10-58-30-PM-1.jpg" alt="Name Plate 19" onclick="openLightbox(this, 'nameplates')">
+          <img src="https://i.ibb.co/SgHPxnv/Whats-App-Image-2026-03-02-at-10-58-30-PM.jpg" alt="Name Plate 20" onclick="openLightbox(this, 'nameplates')">
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <h2>LED Sign Boards</h2>
+      <p>
+        Our LED sign boards are bright, durable, and perfect for outdoor visibility.
+        They are ideal for shops, restaurants, showrooms, and businesses looking to
+        attract customers even at night.
+      </p>
+      <a href="projects.html" class="view-products-btn" style="text-decoration:none; display:inline-block;">View in Projects</a>
+    </div>
+
+    <div class="product-card">
+      <h2>Acrylic Sign Boards & Logos</h2>
+      <p>
+        Acrylic signage offers a clean, premium, and modern look. Perfect for logo displays,
+        brand signage, and professional installations with excellent finishing and durability.
+      </p>
+      <a href="projects.html" class="view-products-btn" style="text-decoration:none; display:inline-block;">View in Projects</a>
+    </div>
+
+    <div class="product-card">
+      <h2>Shop Branding Solutions</h2>
+      <p>
+        We provide complete shop branding services including board design,
+        installation, wall graphics, and customized signage. From small shops to
+        large businesses, we create a professional storefront that stands out.
+      </p>
+      <a href="projects.html" class="view-products-btn" style="text-decoration:none; display:inline-block;">View in Projects</a>
+    </div>
+
+    <div class="product-card">
+      <h2>Digital Printing</h2>
+      <p>
+        High-quality digital printing services for banners, flex, posters, and promotional
+        materials. Perfect for events, advertisements, and marketing campaigns with vibrant
+        colors and sharp resolution.
+      </p>
+      <a href="projects.html" class="view-products-btn" style="text-decoration:none; display:inline-block;">View in Projects</a>
+    </div>
+  </section>
+
   <script src="script.js"></script>
+  <script>
+    const galleries = {
+      steel: [
+        "https://i.ibb.co/d4c1X2G4/Whats-App-Image-2026-03-05-at-11-37-27-PM-1.jpg",
+        "https://i.ibb.co/wF366b6R/Whats-App-Image-2026-03-05-at-11-37-26-PM-7.jpg",
+        "https://i.ibb.co/BHYK4CQq/Whats-App-Image-2026-03-05-at-11-37-26-PM-6.jpg",
+        "https://i.ibb.co/GvhmdVX4/Whats-App-Image-2026-03-05-at-11-37-26-PM-5.jpg",
+        "https://i.ibb.co/NgjMDwDq/Whats-App-Image-2026-03-05-at-11-37-26-PM-4.jpg",
+        "https://i.ibb.co/fVC6FvkV/Whats-App-Image-2026-03-05-at-11-37-25-PM-7.jpg",
+        "https://i.ibb.co/6c5vfW23/Whats-App-Image-2026-03-05-at-11-37-25-PM-6.jpg",
+        "https://i.ibb.co/xKk34kSM/Whats-App-Image-2026-03-05-at-11-37-25-PM-5.jpg",
+        "https://i.ibb.co/s97RtrRw/Whats-App-Image-2026-03-05-at-11-37-25-PM-4.jpg",
+        "https://i.ibb.co/bybSx6x/Whats-App-Image-2026-03-05-at-11-37-24-PM-5.jpg",
+        "https://i.ibb.co/99xD9m72/Whats-App-Image-2026-03-05-at-11-37-24-PM-4.jpg",
+        "https://i.ibb.co/HL6dyNCm/Whats-App-Image-2026-03-05-at-11-37-24-PM-3.jpg",
+        "https://i.ibb.co/MkPg8n95/Whats-App-Image-2026-03-05-at-11-37-23-PM-6.jpg",
+        "https://i.ibb.co/prb3J7YG/Whats-App-Image-2026-03-05-at-11-37-23-PM-5.jpg",
+        "https://i.ibb.co/cScq4X91/Whats-App-Image-2026-03-05-at-11-37-23-PM-4.jpg"
+      ],
+      nameplates: [
+        "https://i.ibb.co/xq9wgNRF/Whats-App-Image-2026-03-02-at-10-58-49-PM.jpg",
+        "https://i.ibb.co/x87G631W/Whats-App-Image-2026-03-02-at-10-58-46-PM.jpg",
+        "https://i.ibb.co/9mkqmCNj/Whats-App-Image-2026-03-02-at-10-58-43-PM.jpg",
+        "https://i.ibb.co/mFYrXr3q/Whats-App-Image-2026-03-02-at-10-58-41-PM.jpg",
+        "https://i.ibb.co/yFP29nmr/Whats-App-Image-2026-03-02-at-10-58-38-PM-1.jpg",
+        "https://i.ibb.co/S4gkf6tz/Whats-App-Image-2026-03-02-at-10-58-38-PM.jpg",
+        "https://i.ibb.co/TBr6mxkC/Whats-App-Image-2026-03-02-at-10-58-37-PM-3.jpg",
+        "https://i.ibb.co/5WS1sBmm/Whats-App-Image-2026-03-02-at-10-58-37-PM-2.jpg",
+        "https://i.ibb.co/sJqjYG0q/Whats-App-Image-2026-03-02-at-10-58-37-PM-1.jpg",
+        "https://i.ibb.co/RkrJfRFP/Whats-App-Image-2026-03-02-at-10-58-37-PM.jpg",
+        "https://i.ibb.co/QvYzhD7p/Whats-App-Image-2026-03-02-at-10-58-36-PM.jpg",
+        "https://i.ibb.co/39Fh8p85/Whats-App-Image-2026-03-02-at-10-58-35-PM.jpg",
+        "https://i.ibb.co/XxnXH6R0/Whats-App-Image-2026-03-02-at-10-58-34-PM-1.jpg",
+        "https://i.ibb.co/mFFfXX8F/Whats-App-Image-2026-03-02-at-10-58-34-PM.jpg",
+        "https://i.ibb.co/qLnt896v/Whats-App-Image-2026-03-02-at-10-58-32-PM.jpg",
+        "https://i.ibb.co/66DCKg0/Whats-App-Image-2026-03-02-at-10-58-31-PM-1.jpg",
+        "https://i.ibb.co/vCvw0fQv/Whats-App-Image-2026-03-02-at-10-58-31-PM.jpg",
+        "https://i.ibb.co/YT17yD8T/Whats-App-Image-2026-03-02-at-10-58-30-PM-2.jpg",
+        "https://i.ibb.co/qLdTrVwn/Whats-App-Image-2026-03-02-at-10-58-30-PM-1.jpg",
+        "https://i.ibb.co/SgHPxnv/Whats-App-Image-2026-03-02-at-10-58-30-PM.jpg"
+      ]
+    };
 
+    let currentGallery = 'steel';
+    let currentIndex   = 0;
+
+    function openGallery(name) {
+      currentGallery = name || 'steel';
+      document.getElementById('galleryOverlay-' + currentGallery).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGallery(name) {
+      document.getElementById('galleryOverlay-' + name).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeGalleryOutside(e, name) {
+      if (e.target === document.getElementById('galleryOverlay-' + name)) closeGallery(name);
+    }
+
+    function openLightbox(img, galleryName) {
+      currentGallery = galleryName;
+      currentIndex   = galleries[galleryName].indexOf(img.src);
+      document.getElementById('lightboxImg').src = galleries[galleryName][currentIndex];
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    function changeImage(dir, e) {
+      e.stopPropagation();
+      const imgs = galleries[currentGallery];
+      currentIndex = (currentIndex + dir + imgs.length) % imgs.length;
+      document.getElementById('lightboxImg').src = imgs[currentIndex];
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'ArrowRight') changeImage(1,  { stopPropagation: ()=>{} });
+        if (e.key === 'ArrowLeft')  changeImage(-1, { stopPropagation: ()=>{} });
+        if (e.key === 'Escape')     closeLightbox();
+      }
+      Object.keys(galleries).forEach(name => {
+        const el = document.getElementById('galleryOverlay-' + name);
+        if (el && el.classList.contains('open') && e.key === 'Escape') closeGallery(name);
+      });
+    });
+  </script>
 </body>
 </html>
