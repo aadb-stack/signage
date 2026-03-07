@@ -2,179 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f8f5ef" />
-  <title>Sign Makers Pune</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Makers</title>
+  <link rel="stylesheet" href="style.css?v=5" />
   <style>
-    /* ── Hero overrides for canvas skyline ──────────── */
+    /* ── Hero: night cityscape background ── */
     #home.hero {
-      position: relative;
-      height: calc(100svh - var(--header-h));
-      min-height: 480px;
-      padding: 0;
-      background: #0d1a0a; /* deep night fallback */
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* no background-image, no background-attachment:fixed on mobile */
+      background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=85&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
-    /* Canvas fills entire hero */
-    #skylineCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* Subtle warm beige gradient overlay so text is always readable */
+    /* Darker overlay so text stays crisp over the city lights */
     #home.hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 25, 10, 0.18) 0%,
-        rgba(15, 25, 10, 0.10) 40%,
-        rgba(15, 25, 10, 0.55) 100%
-      );
-      pointer-events: none;
-      z-index: 1;
+      background: rgba(10, 18, 8, 0.52);
     }
 
-    /* Hero content sits above canvas */
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      padding: 48px 52px;
-      border-radius: 22px;
-      background: rgba(255, 252, 245, 0.13);
-      backdrop-filter: blur(18px) saturate(140%);
-      -webkit-backdrop-filter: blur(18px) saturate(140%);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(28px);
-      animation: heroReveal 1s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
-    }
-
+    /* Text colours adjusted for dark bg */
     .hero-content h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 700;
-      color: #f5f0e3;
-      line-height: 1.18;
-      letter-spacing: -0.4px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+      color: #f2ece0;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.45);
     }
-
     .hero-content p {
-      font-size: clamp(14px, 2.2vw, 17px);
-      line-height: 1.78;
-      color: rgba(240, 234, 218, 0.88);
-      margin-top: 14px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+      color: rgba(240, 232, 215, 0.88);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.35);
     }
 
-    .hero-btn {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 14px 36px;
-      background: #556b2f;
-      color: #fff;
-      font-family: "Jost", sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.5px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 6px 22px rgba(85,107,47,0.45);
-      transition: background 0.3s ease, transform 0.28s ease, box-shadow 0.3s ease;
-    }
-    .hero-btn:hover {
-      background: #3f5220;
-      transform: translateY(-4px);
-      box-shadow: 0 14px 34px rgba(85,107,47,0.52);
+    /* Glass card: darker tint to suit night scene */
+    .hero-content {
+      background: rgba(12, 20, 8, 0.38);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 20px 55px rgba(0,0,0,0.35);
     }
 
-    /* Scroll-down cue */
-    .scroll-cue {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      opacity: 0;
-      animation: heroReveal 0.8s ease 1.4s forwards;
-    }
-    .scroll-cue span {
-      font-family: "Jost", sans-serif;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 2.5px;
-      color: rgba(240,234,218,0.6);
-      text-transform: uppercase;
-    }
-    .scroll-cue-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 1.5px solid rgba(240,234,218,0.5);
-      border-bottom: 1.5px solid rgba(240,234,218,0.5);
-      transform: rotate(45deg);
-      animation: arrowBounce 1.6s ease-in-out infinite;
-    }
-    @keyframes arrowBounce {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50%       { transform: rotate(45deg) translateY(5px); }
-    }
-
-    /* ── MOBILE OPTIMISATIONS ─────────────────────── */
+    /* Mobile: disable fixed attachment (iOS bug) */
     @media (max-width: 768px) {
       #home.hero {
-        height: calc(100svh - var(--header-h));
-        min-height: 420px;
+        background-attachment: scroll;
+        background-position: center center;
       }
-
-      .hero-content {
-        width: calc(100% - 36px);
-        padding: 32px 24px;
-        border-radius: 18px;
-        /* softer blur on mobile — better perf */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
-
-      .hero-btn {
-        padding: 13px 30px;
-        font-size: 14px;
-      }
-
-      .scroll-cue { bottom: 18px; }
-    }
-
-    @media (max-width: 420px) {
-      .hero-content {
-        padding: 26px 18px;
-      }
-    }
-
-    @keyframes heroReveal {
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══ HEADER ══════════════════════════════════════ -->
+  <!-- HEADER -->
   <header class="site-header">
     <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">☰</button>
     <a href="index.html" class="logo-link">
@@ -182,329 +56,39 @@
         src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
         alt="Sign Makers Pune Logo"
         class="logo"
-        loading="eager"
-        decoding="async"
       />
     </a>
   </header>
 
-  <!-- ══ MOBILE SLIDE MENU ═══════════════════════════ -->
+  <!-- MOBILE SLIDE MENU -->
   <nav id="mobileMenu" class="mobile-menu">
     <button class="close-menu" onclick="toggleMenu()">✖</button>
-
-    <a href="index.html" class="active-page">
-      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
-      Home
-    </a>
-    <a href="about.html">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      About
-    </a>
-    <a href="services.html">
-      <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-      Services
-    </a>
-    <a href="products.html">
-      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-      Products
-    </a>
-    <a href="projects.html">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Projects
-    </a>
-    <a href="reviews.html">
-      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Testimonials
-    </a>
-    <a href="contact.html">
-      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Contact
-    </a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- ══ HERO — DYNAMIC CANVAS SKYLINE ═══════════════ -->
+  <!-- HERO SECTION -->
   <section id="home" class="hero">
-    <canvas id="skylineCanvas" aria-hidden="true"></canvas>
-
     <div class="hero-content">
       <h1>Welcome to Sign Makers</h1>
       <p>Premium Sign Boards &amp; Shop Branding in Pune</p>
       <a href="products.html" class="hero-btn">Explore Products</a>
     </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="scroll-cue-arrow"></div>
-    </div>
   </section>
 
-  <!-- ══ SCRIPTS ═════════════════════════════════════ -->
   <script>
-    /* ── Menu toggle ─────────────────────────────── */
     function toggleMenu() {
       document.getElementById("mobileMenu").classList.toggle("active");
     }
-    document.addEventListener("click", e => {
-      const menu = document.getElementById("mobileMenu");
-      const ham  = document.querySelector(".hamburger");
-      if (menu.classList.contains("active") &&
-          !menu.contains(e.target) && !ham.contains(e.target)) {
-        menu.classList.remove("active");
-      }
-    });
-
-    /* ── Header scroll opacity ───────────────────── */
-    const hdr = document.querySelector(".site-header");
-    window.addEventListener("scroll", () => {
-      hdr.classList.toggle("scrolled", window.scrollY > 30);
-    }, { passive: true });
-
-    /* ══ DYNAMIC NIGHT-CITY SKYLINE CANVAS ══════════
-       Pure canvas — no external images needed.
-       Draws:
-         • Deep gradient night sky (dusk → midnight)
-         • Twinkling stars
-         • Layered city buildings with glowing sign-board
-           windows (on-brand nod to the business)
-         • Animated slow parallax drift on buildings
-         • Warm ambient glow along horizon
-    ═══════════════════════════════════════════════ */
-    (function initSkyline() {
-      const canvas = document.getElementById("skylineCanvas");
-      const ctx    = canvas.getContext("2d");
-
-      let W, H, buildings = [], stars = [], dpr;
-      let tick = 0;
-      let rafId = null;
-      const isMobile = () => window.innerWidth <= 768;
-
-      /* ── Resize ──────────────────────────────── */
-      function resize() {
-        dpr    = Math.min(window.devicePixelRatio || 1, isMobile() ? 1.5 : 2);
-        W      = canvas.offsetWidth;
-        H      = canvas.offsetHeight;
-        canvas.width  = W * dpr;
-        canvas.height = H * dpr;
-        ctx.scale(dpr, dpr);
-        buildScene();
-      }
-
-      /* ── Build buildings ─────────────────────── */
-      function buildScene() {
-        buildings = [];
-        stars     = [];
-
-        /* Stars — fewer on mobile for perf */
-        const starCount = isMobile() ? 60 : 130;
-        for (let i = 0; i < starCount; i++) {
-          stars.push({
-            x:       Math.random() * W,
-            y:       Math.random() * H * 0.55,
-            r:       Math.random() * 1.2 + 0.3,
-            alpha:   Math.random() * 0.7 + 0.3,
-            speed:   Math.random() * 0.018 + 0.006,
-            phase:   Math.random() * Math.PI * 2,
-          });
-        }
-
-        /* Two building layers — far (darker) and near (brighter) */
-        const layers = [
-          { count: isMobile() ? 10 : 16, minH: 0.25, maxH: 0.50, minW: 40, maxW: 90,  yBase: H * 0.72, drift: 0.12, darken: 0.55 },
-          { count: isMobile() ? 12 : 20, minH: 0.18, maxH: 0.40, minW: 28, maxW: 65,  yBase: H * 0.82, drift: 0.28, darken: 0.82 },
-        ];
-
-        layers.forEach((layer, li) => {
-          let x = -30;
-          for (let i = 0; i < layer.count; i++) {
-            const bw = layer.minW + Math.random() * (layer.maxW - layer.minW);
-            const bh = H * (layer.minH + Math.random() * (layer.maxH - layer.minH));
-
-            /* Windows grid */
-            const wins = [];
-            const cols = Math.floor(bw / 10);
-            const rows = Math.floor(bh / 14);
-            for (let r = 0; r < rows; r++) {
-              for (let c = 0; c < cols; c++) {
-                /* randomly lit — more lit on near layer */
-                const lit = Math.random() < (li === 1 ? 0.55 : 0.35);
-                /* sign-board windows: occasionally warm olive/gold tint */
-                const isSign = lit && Math.random() < 0.12;
-                wins.push({ r, c, lit, isSign, flicker: Math.random() });
-              }
-            }
-
-            buildings.push({
-              x, bw, bh,
-              yBase:  layer.yBase,
-              darken: layer.darken,
-              drift:  layer.drift,
-              driftOffset: Math.random() * Math.PI * 2,
-              wins,
-              cols, rows,
-            });
-            x += bw + (Math.random() * 8 - 4);
-          }
-        });
-      }
-
-      /* ── Draw sky gradient ───────────────────── */
-      function drawSky() {
-        const grad = ctx.createLinearGradient(0, 0, 0, H);
-        grad.addColorStop(0,    "#060d12");
-        grad.addColorStop(0.35, "#0b1a22");
-        grad.addColorStop(0.65, "#0f2212");
-        grad.addColorStop(0.82, "#1a2e0e");
-        grad.addColorStop(1,    "#243b12");
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, W, H);
-      }
-
-      /* ── Horizon ambient glow ────────────────── */
-      function drawGlow() {
-        const gy = H * 0.72;
-        const gr = ctx.createRadialGradient(W/2, gy, 0, W/2, gy, W * 0.7);
-        gr.addColorStop(0,   "rgba(120, 160, 60, 0.18)");
-        gr.addColorStop(0.4, "rgba(85, 107, 47, 0.10)");
-        gr.addColorStop(1,   "rgba(0,0,0,0)");
-        ctx.fillStyle = gr;
-        ctx.fillRect(0, 0, W, H);
-      }
-
-      /* ── Draw stars ──────────────────────────── */
-      function drawStars(t) {
-        stars.forEach(s => {
-          const alpha = s.alpha * (0.65 + 0.35 * Math.sin(t * s.speed + s.phase));
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(230,240,210,${alpha})`;
-          ctx.fill();
-        });
-      }
-
-      /* ── Draw buildings ──────────────────────── */
-      function drawBuildings(t) {
-        buildings.forEach(b => {
-          const dx = Math.sin(t * 0.0004 + b.driftOffset) * b.drift * 8;
-          const bx = b.x + dx;
-          const by = b.yBase - b.bh;
-
-          /* Building body */
-          const d   = b.darken;
-          const bgrad = ctx.createLinearGradient(bx, by, bx + b.bw, by + b.bh);
-          bgrad.addColorStop(0,   `rgba(${20*d},${32*d},${14*d},1)`);
-          bgrad.addColorStop(1,   `rgba(${14*d},${22*d},${10*d},1)`);
-          ctx.fillStyle = bgrad;
-          ctx.fillRect(bx, by, b.bw, b.bh);
-
-          /* Rooftop edge highlight */
-          ctx.fillStyle = `rgba(${80*d},${110*d},${50*d},0.4)`;
-          ctx.fillRect(bx, by, b.bw, 1.5);
-
-          /* Windows */
-          if (b.cols > 0 && b.rows > 0) {
-            const padX  = (b.bw - b.cols * 7) / (b.cols + 1);
-            const padY  = (b.bh - b.rows * 6) / (b.rows + 1);
-            const ww = 6, wh = 5;
-
-            b.wins.forEach(w => {
-              if (!w.lit) return;
-              const wx = bx + padX + w.c * (ww + padX);
-              const wy = by + padY + w.r * (wh + padY);
-
-              /* subtle flicker */
-              const flAlpha = w.isSign
-                ? 0.7 + 0.3 * Math.sin(t * 0.003 + w.flicker * 10)
-                : 0.55 + 0.15 * Math.sin(t * 0.0015 + w.flicker * 6);
-
-              if (w.isSign) {
-                /* Warm olive/gold — sign boards! */
-                ctx.fillStyle = `rgba(190,165,80,${flAlpha})`;
-                /* Glow */
-                const sg = ctx.createRadialGradient(wx+ww/2, wy+wh/2, 0, wx+ww/2, wy+wh/2, 10);
-                sg.addColorStop(0,   `rgba(190,165,80,0.35)`);
-                sg.addColorStop(1,   "rgba(0,0,0,0)");
-                ctx.fillStyle = sg;
-                ctx.fillRect(wx - 6, wy - 6, ww + 12, wh + 12);
-                ctx.fillStyle = `rgba(210,185,90,${flAlpha})`;
-              } else {
-                ctx.fillStyle = `rgba(160,200,140,${flAlpha})`;
-              }
-              ctx.fillRect(wx, wy, ww, wh);
-            });
-          }
-        });
-      }
-
-      /* ── Moon ────────────────────────────────── */
-      function drawMoon() {
-        const mx = W * 0.82, my = H * 0.14, mr = isMobile() ? 18 : 24;
-        const mg = ctx.createRadialGradient(mx, my, 0, mx, my, mr * 2.5);
-        mg.addColorStop(0,   "rgba(230,245,210,0.14)");
-        mg.addColorStop(1,   "rgba(0,0,0,0)");
-        ctx.fillStyle = mg;
-        ctx.beginPath();
-        ctx.arc(mx, my, mr * 2.5, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(mx, my, mr, 0, Math.PI * 2);
-        const mc = ctx.createRadialGradient(mx - mr*0.3, my - mr*0.3, 0, mx, my, mr);
-        mc.addColorStop(0,   "#e8f5d8");
-        mc.addColorStop(0.6, "#c8dfa8");
-        mc.addColorStop(1,   "#9ab870");
-        ctx.fillStyle = mc;
-        ctx.fill();
-      }
-
-      /* ── Ground strip ────────────────────────── */
-      function drawGround() {
-        const gg = ctx.createLinearGradient(0, H * 0.82, 0, H);
-        gg.addColorStop(0, "#0a1508");
-        gg.addColorStop(1, "#060d04");
-        ctx.fillStyle = gg;
-        ctx.fillRect(0, H * 0.82, W, H * 0.18);
-
-        /* Street glow */
-        const sg = ctx.createLinearGradient(0, H * 0.82, 0, H * 0.88);
-        sg.addColorStop(0,   "rgba(100,140,55,0.18)");
-        sg.addColorStop(1,   "rgba(0,0,0,0)");
-        ctx.fillStyle = sg;
-        ctx.fillRect(0, H * 0.82, W, H * 0.06);
-      }
-
-      /* ── Main render loop ────────────────────── */
-      function draw(t) {
-        ctx.clearRect(0, 0, W, H);
-        drawSky();
-        drawGlow();
-        drawMoon();
-        drawStars(t);
-        drawBuildings(t);
-        drawGround();
-        tick = t;
-        rafId = requestAnimationFrame(draw);
-      }
-
-      /* ── Pause when tab hidden (battery / perf) ─ */
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          cancelAnimationFrame(rafId);
-        } else {
-          rafId = requestAnimationFrame(draw);
-        }
-      });
-
-      /* ── Init ────────────────────────────────── */
-      resize();
-      let resizeTimer;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 120);
-      }, { passive: true });
-
-      rafId = requestAnimationFrame(draw);
-    })();
   </script>
+
+</body>
+</html>
 
   <script src="script.js"></script>
 </body>
