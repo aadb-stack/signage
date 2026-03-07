@@ -722,46 +722,47 @@ img, video {
   justify-content: center;
 }
 
-/* ===============================
-   PROJECTS GRID — FIXED
-   Images no longer overflow,
-   consistent tile sizing
-================================ */
+/* /* /* ==========================================
+   PROJECTS GRID — NO CROPPING VERSION
+========================================== */
+
 .projects-grid {
-  margin-top: 48px;
+  margin-top: 55px;
+
   display: grid;
-  gap: 18px;
-  max-width: 1160px;
+  gap: 25px;
+
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  /* 3 cols desktop, scales down responsively */
-  grid-template-columns: repeat(3, 1fr);
-  /* Contain everything within section */
-  width: 100%;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* Uniform tile container */
 .projects-grid img,
 .projects-grid video {
   width: 100%;
-  /* fixed height tile — no overflow */
-  height: 240px;
-  object-fit: cover;      /* fill tile, crop edges rather than overflow */
-  background: #f0ece4;
-  border-radius: var(--radius);
-  border: 1px solid rgba(0,0,0,0.07);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.34s cubic-bezier(0.22,1,0.36,1), box-shadow 0.34s;
+  height: 260px;              /* fixed visual height */
+  object-fit: contain;        /* shows full image */
+
+  background: #ffffff;        /* clean background for empty space */
+  padding: 15px;              /* luxury breathing space */
+
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+
+  transition: 0.3s ease;
   cursor: pointer;
-  will-change: transform;
-  display: block;         /* remove inline gap */
 }
 
 .projects-grid img:hover,
 .projects-grid video:hover {
-  transform: scale(1.04);
-  box-shadow: 0 20px 40px rgba(85,107,47,0.17);
+  transform: scale(1.03);
+  box-shadow: 0px 18px 40px rgba(85, 107, 47, 0.18);
 }
-
 /* ===============================
    FOOTER
 ================================ */
