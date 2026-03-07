@@ -6,21 +6,132 @@
   <title>Sign Makers</title>
   <link rel="stylesheet" href="style.css?v=5" />
   <style>
-    /* ── Hero: night cityscape background ── */
     #home.hero {
-      background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=85&auto=format&fit=crop");
+      position: relative;
+      overflow: hidden;
+      background: #04060f;
+    }
+
+    /* Crossfading background slides */
+    .bg-slide {
+      position: absolute;
+      inset: 0;
       background-size: cover;
-      background-position: center bottom;
+      background-position: center center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
+      z-index: 0;
+      opacity: 0;
     }
 
-    /* Darker overlay so text stays crisp over the city lights */
+    /* s1: Times Square busy night, neon + billboards */
+    .bg-slide.s1 {
+      background-image: url("https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=90&auto=format&fit=crop");
+      animation: bgFade 16s ease-in-out infinite 0s;
+    }
+    /* s2: Tokyo Shinjuku neon signs street at night — verified */
+    .bg-slide.s2 {
+      background-image: url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1800&q=90&auto=format&fit=crop");
+      animation: bgFade 16s ease-in-out infinite 4s;
+    }
+    /* s3: Rainy night Tokyo neon street — confirmed */
+    .bg-slide.s3 {
+      background-image: url("https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1800&q=90&auto=format&fit=crop");
+      animation: bgFade 16s ease-in-out infinite 8s;
+    }
+    /* s4: Las Vegas neon strip at night — confirmed */
+    .bg-slide.s4 {
+      background-image: url("https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1800&q=90&auto=format&fit=crop");
+      animation: bgFade 16s ease-in-out infinite 12s;
+    }
+
+    @keyframes bgFade {
+      0%   { opacity: 0; }
+      8%   { opacity: 1; }
+      33%  { opacity: 1; }
+      42%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Dark overlay */
     #home.hero::before {
-      background: rgba(10, 18, 8, 0.52);
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 6, 14, 0.40);
+      z-index: 1;
+      pointer-events: none;
     }
 
-    /* Text colours adjusted for dark bg */
+    /* Animated neon colour blobs */
+    .fx-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .fx-wrap .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+    .fx-wrap .b1 {
+      width: 55%; height: 55%;
+      top: 0; left: -10%;
+      background: radial-gradient(ellipse, rgba(255,40,10,0.18) 0%, transparent 70%);
+      animation: b1 7s ease-in-out infinite alternate;
+    }
+    .fx-wrap .b2 {
+      width: 50%; height: 50%;
+      top: 0; right: -8%;
+      background: radial-gradient(ellipse, rgba(0,160,255,0.15) 0%, transparent 70%);
+      animation: b2 9s ease-in-out infinite alternate;
+    }
+    .fx-wrap .b3 {
+      width: 45%; height: 30%;
+      top: 38%; left: 26%;
+      background: radial-gradient(ellipse, rgba(255,200,0,0.12) 0%, transparent 70%);
+      animation: b3 5.5s ease-in-out infinite alternate;
+    }
+    .fx-wrap .b4 {
+      width: 30%; height: 40%;
+      bottom: 5%; left: 8%;
+      background: radial-gradient(ellipse, rgba(200,0,255,0.08) 0%, transparent 70%);
+      animation: b4 8s ease-in-out infinite alternate;
+    }
+    /* Vignette */
+    .fx-wrap .vig {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 38%, rgba(2,4,12,0.72) 100%);
+    }
+
+    @keyframes b1 {
+      0%   { opacity: 0.45; transform: scale(1)    translate(0,  0);  }
+      100% { opacity: 1;    transform: scale(1.12) translate(5%, 3%); }
+    }
+    @keyframes b2 {
+      0%   { opacity: 0.35; transform: scale(1.05) translate(0,   0);  }
+      100% { opacity: 0.9;  transform: scale(1)    translate(-4%, 5%); }
+    }
+    @keyframes b3 {
+      0%   { opacity: 0.25; transform: scale(1);    }
+      50%  { opacity: 0.85; transform: scale(1.1);  }
+      100% { opacity: 0.4;  transform: scale(0.95); }
+    }
+    @keyframes b4 {
+      0%   { opacity: 0.2;  transform: scale(1);    }
+      100% { opacity: 0.65; transform: scale(1.18); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      background: rgba(4, 6, 14, 0.40);
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 20px 55px rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+    }
     .hero-content h1 {
       color: #f2ece0;
       text-shadow: 0 2px 18px rgba(0,0,0,0.45);
@@ -30,19 +141,8 @@
       text-shadow: 0 1px 10px rgba(0,0,0,0.35);
     }
 
-    /* Glass card: darker tint to suit night scene */
-    .hero-content {
-      background: rgba(12, 20, 8, 0.38);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 20px 55px rgba(0,0,0,0.35);
-    }
-
-    /* Mobile: disable fixed attachment (iOS bug) */
     @media (max-width: 768px) {
-      #home.hero {
-        background-attachment: scroll;
-        background-position: center center;
-      }
+      .bg-slide { background-position: 60% center; }
     }
   </style>
 </head>
@@ -74,6 +174,19 @@
 
   <!-- HERO SECTION -->
   <section id="home" class="hero">
+    <div class="bg-slide s1"></div>
+    <div class="bg-slide s2"></div>
+    <div class="bg-slide s3"></div>
+    <div class="bg-slide s4"></div>
+
+    <div class="fx-wrap">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <div class="blob b4"></div>
+      <div class="vig"></div>
+    </div>
+
     <div class="hero-content">
       <h1>Welcome to Sign Makers</h1>
       <p>Premium Sign Boards &amp; Shop Branding in Pune</p>
@@ -86,10 +199,6 @@
       document.getElementById("mobileMenu").classList.toggle("active");
     }
   </script>
-
-</body>
-</html>
-
   <script src="script.js"></script>
 </body>
 </html>
