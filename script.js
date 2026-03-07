@@ -53,10 +53,9 @@ if (hdr) {
     ".products-hero p",
   ];
 
-  /* These get staggered child reveals — NOT projects-grid */
+  /* These get staggered child reveals — NOT projects-grid, NOT services-grid */
   const groupSelectors = [
     ".about-highlights",
-    ".services-grid",
     ".grid",
     ".contact-grid",
     ".about-services ul",
