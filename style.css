@@ -30,7 +30,7 @@
 
   --radius:        18px;
   --radius-sm:     12px;
-  --header-h:      80px;
+  --header-h:      90px;
   --touch-min:     48px;
 
   --font-display:  "Cormorant Garamond", Georgia, serif;
@@ -83,9 +83,7 @@ body {
 img, video { max-width: 100%; display: block; }
 
 /* ===============================
-   HEADER — PURE WHITE ELEMENTS
-   Background matches logo tone:
-   warm dark olive glass
+   HEADER — PURE WHITE
 ================================ */
 .site-header {
   position: fixed;
@@ -96,52 +94,49 @@ img, video { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 max(24px, env(safe-area-inset-left));
-  padding-right: max(24px, env(safe-area-inset-right));
+  padding: 0 max(28px, env(safe-area-inset-left));
+  padding-right: max(28px, env(safe-area-inset-right));
 
-  /* Same warm dark tone as the logo background */
-  background: rgba(34, 46, 16, 0.60);
-  backdrop-filter: blur(22px) saturate(155%);
-  -webkit-backdrop-filter: blur(22px) saturate(155%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+  /* Pure white */
+  background: #ffffff;
+  border-bottom: 1px solid rgba(85,107,47,0.12);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
   transition: background var(--dur-mid) ease, box-shadow var(--dur-mid) ease;
   transform: translateZ(0);
   will-change: background;
 }
 
+/* Scrolled: stays white, shadow deepens, gold accent line appears */
 .site-header.scrolled {
-  background: rgba(34, 46, 16, 0.96);
-  box-shadow: 0 4px 28px rgba(0,0,0,0.26);
-  border-bottom-color: rgba(255,255,255,0.06);
+  background: #ffffff;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.11);
 }
 
-/* Subtle gold shimmer line under header when scrolled */
 .site-header.scrolled::after {
   content: "";
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.38), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.45), rgba(85,107,47,0.35), transparent);
 }
 
-/* ── Logo ── */
+/* ── Logo — bigger & visible on white ── */
 .logo {
-  height: 62px; width: auto;
+  height: 72px; width: auto;
   user-select: none;
   -webkit-user-drag: none;
-  /* Slightly boost brightness so the logo pops on dark bg */
-  filter: brightness(1.08) drop-shadow(0 2px 8px rgba(0,0,0,0.22));
-  transition: opacity var(--dur-fast), transform var(--dur-fast), filter var(--dur-fast);
+  /* No filter needed on white bg — let it render naturally */
+  filter: none;
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
 }
-.logo:hover { opacity: 0.85; transform: scale(1.04); }
+.logo:hover { opacity: 0.82; transform: scale(1.04); }
 
-/* ── Hamburger — pure white ── */
+/* ── Hamburger — olive on white ── */
 .hamburger {
   font-size: 26px;
   cursor: pointer;
   background: none; border: none;
-  color: #ffffff;                  /* ← pure white */
+  color: var(--olive);
   z-index: 100001;
   min-width: var(--touch-min);
   min-height: var(--touch-min);
@@ -150,22 +145,22 @@ img, video { max-width: 100%; display: block; }
   touch-action: manipulation;
   transition: background var(--dur-fast), transform var(--dur-fast);
 }
-.hamburger:hover  { background: rgba(255,255,255,0.12); }
+.hamburger:hover  { background: var(--olive-light); }
 .hamburger:active { transform: scale(0.92); }
 
-/* ── Desktop nav links — white ── */
+/* ── Desktop nav links — olive on white ── */
 .site-header nav a,
 .site-header .nav-link {
-  color: #ffffff;
+  color: var(--olive);
   text-decoration: none;
   font-family: var(--font-body);
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.4px;
-  transition: opacity var(--dur-fast);
+  transition: color var(--dur-fast), opacity var(--dur-fast);
 }
 .site-header nav a:hover,
-.site-header .nav-link:hover { opacity: 0.68; }
+.site-header .nav-link:hover { color: var(--olive-dark); opacity: 0.80; }
 
 /* ===============================
    MOBILE MENU
@@ -829,13 +824,13 @@ footer::before {
 ════════════════════════════════ */
 @media (max-width: 768px) {
   :root {
-    --header-h: 66px;
+    --header-h: 72px;
     --dur-mid:  0.38s;
     --dur-slow: 0.55s;
   }
 
   body { overflow-x: hidden; }
-  .logo { height: 50px; }
+  .logo { height: 58px; }
 
   .mobile-menu { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(254,252,246,0.99); }
 
@@ -885,8 +880,8 @@ footer::before {
    RESPONSIVE ≤ 420px
 ════════════════════════════════ */
 @media (max-width: 420px) {
-  :root { --header-h: 62px; }
-  .logo { height: 44px; }
+  :root { --header-h: 66px; }
+  .logo { height: 52px; }
   .section { padding: 48px 12px; }
   .section h2 { font-size: 23px; }
   .hero-content { padding: 22px 14px; }
