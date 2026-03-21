@@ -1,203 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Makers</title>
-  <link rel="stylesheet" href="style.css?v=5" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Makers Pune | Premium Signage & Branding</title>
+  <link rel="stylesheet" href="style.css">
   <style>
+    /* ── HERO SLIDESHOW ─────────────────── */
     #home.hero {
       position: relative;
       overflow: hidden;
       background: #04060f;
     }
-
-    /* Crossfading background slides */
     .bg-slide {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-size: cover;
-      background-position: center center;
+      background-position: center;
       background-repeat: no-repeat;
-      z-index: 0;
-      opacity: 0;
-      /* Ken Burns zoom — starts at 100%, slowly grows to 115% over 16s */
+      z-index: 0; opacity: 0;
       transform: scale(1);
       will-change: opacity, transform;
     }
-
-    /* s1 */
-    .bg-slide.s1 {
-      background-image: url("https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=90&auto=format&fit=crop");
-      animation:
-        bgFade   16s ease-in-out infinite 0s,
-        bgZoom   16s ease-in-out infinite 0s;
-    }
-    /* s2 */
-    .bg-slide.s2 {
-      background-image: url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1800&q=90&auto=format&fit=crop");
-      animation:
-        bgFade   16s ease-in-out infinite 4s,
-        bgZoom   16s ease-in-out infinite 4s;
-    }
-    /* s3 */
-    .bg-slide.s3 {
-      background-image: url("https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1800&q=90&auto=format&fit=crop");
-      animation:
-        bgFade   16s ease-in-out infinite 8s,
-        bgZoom   16s ease-in-out infinite 8s;
-    }
-    /* s4 */
-    .bg-slide.s4 {
-      background-image: url("https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1800&q=90&auto=format&fit=crop");
-      animation:
-        bgFade   16s ease-in-out infinite 12s,
-        bgZoom   16s ease-in-out infinite 12s;
-    }
-
-    /* Fade keyframes — unchanged */
-    @keyframes bgFade {
-      0%   { opacity: 0; }
-      8%   { opacity: 1; }
-      33%  { opacity: 1; }
-      42%  { opacity: 0; }
-      100% { opacity: 0; }
-    }
-
-    /*
-      Ken Burns zoom:
-      - starts at scale(1) when image fades in (0%)
-      - slowly grows to scale(1.14) by the time it fades out (~42%)
-      - snaps back to scale(1) while invisible so it's ready for the next cycle
-      The zoom rate is deliberately slow & cinematic — noticeable but never jarring.
-    */
-    @keyframes bgZoom {
-      0%   { transform: scale(1);    }
-      42%  { transform: scale(1.14); }
-      43%  { transform: scale(1);    } /* instant reset while opacity is 0 */
-      100% { transform: scale(1);    }
-    }
-
-    /* Dark overlay */
-    #home.hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(4, 6, 14, 0.40);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* Animated neon colour blobs */
-    .fx-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .fx-wrap .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-    }
-    .fx-wrap .b1 {
-      width: 55%; height: 55%;
-      top: 0; left: -10%;
-      background: radial-gradient(ellipse, rgba(255,40,10,0.18) 0%, transparent 70%);
-      animation: b1 7s ease-in-out infinite alternate;
-    }
-    .fx-wrap .b2 {
-      width: 50%; height: 50%;
-      top: 0; right: -8%;
-      background: radial-gradient(ellipse, rgba(0,160,255,0.15) 0%, transparent 70%);
-      animation: b2 9s ease-in-out infinite alternate;
-    }
-    .fx-wrap .b3 {
-      width: 45%; height: 30%;
-      top: 38%; left: 26%;
-      background: radial-gradient(ellipse, rgba(255,200,0,0.12) 0%, transparent 70%);
-      animation: b3 5.5s ease-in-out infinite alternate;
-    }
-    .fx-wrap .b4 {
-      width: 30%; height: 40%;
-      bottom: 5%; left: 8%;
-      background: radial-gradient(ellipse, rgba(200,0,255,0.08) 0%, transparent 70%);
-      animation: b4 8s ease-in-out infinite alternate;
-    }
-    /* Vignette */
-    .fx-wrap .vig {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 38%, rgba(2,4,12,0.72) 100%);
-    }
-
-    @keyframes b1 {
-      0%   { opacity: 0.45; transform: scale(1)    translate(0,  0);  }
-      100% { opacity: 1;    transform: scale(1.12) translate(5%, 3%); }
-    }
-    @keyframes b2 {
-      0%   { opacity: 0.35; transform: scale(1.05) translate(0,   0);  }
-      100% { opacity: 0.9;  transform: scale(1)    translate(-4%, 5%); }
-    }
-    @keyframes b3 {
-      0%   { opacity: 0.25; transform: scale(1);    }
-      50%  { opacity: 0.85; transform: scale(1.1);  }
-      100% { opacity: 0.4;  transform: scale(0.95); }
-    }
-    @keyframes b4 {
-      0%   { opacity: 0.2;  transform: scale(1);    }
-      100% { opacity: 0.65; transform: scale(1.18); }
-    }
-
-    /* Hero content */
+    .bg-slide.s1 { background-image: url("https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=90&auto=format&fit=crop"); animation: bgFade 16s ease-in-out infinite 0s, bgZoom 16s ease-in-out infinite 0s; }
+    .bg-slide.s2 { background-image: url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1800&q=90&auto=format&fit=crop"); animation: bgFade 16s ease-in-out infinite 4s, bgZoom 16s ease-in-out infinite 4s; }
+    .bg-slide.s3 { background-image: url("https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1800&q=90&auto=format&fit=crop"); animation: bgFade 16s ease-in-out infinite 8s, bgZoom 16s ease-in-out infinite 8s; }
+    .bg-slide.s4 { background-image: url("https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1800&q=90&auto=format&fit=crop"); animation: bgFade 16s ease-in-out infinite 12s, bgZoom 16s ease-in-out infinite 12s; }
+    @keyframes bgFade { 0%{opacity:0} 8%{opacity:1} 33%{opacity:1} 42%{opacity:0} 100%{opacity:0} }
+    @keyframes bgZoom { 0%{transform:scale(1)} 42%{transform:scale(1.13)} 43%{transform:scale(1)} 100%{transform:scale(1)} }
+    #home.hero::before { content:''; position:absolute; inset:0; background:rgba(4,6,14,0.42); z-index:1; pointer-events:none; }
+    .fx-wrap { position:absolute; inset:0; z-index:2; pointer-events:none; }
+    .fx-wrap .blob { position:absolute; border-radius:50%; filter:blur(60px); }
+    .fx-wrap .b1 { width:55%; height:55%; top:0; left:-10%; background:radial-gradient(ellipse,rgba(255,40,10,0.16) 0%,transparent 70%); animation:b1 7s ease-in-out infinite alternate; }
+    .fx-wrap .b2 { width:50%; height:50%; top:0; right:-8%; background:radial-gradient(ellipse,rgba(0,160,255,0.13) 0%,transparent 70%); animation:b2 9s ease-in-out infinite alternate; }
+    .fx-wrap .b3 { width:45%; height:30%; top:38%; left:26%; background:radial-gradient(ellipse,rgba(255,200,0,0.10) 0%,transparent 70%); animation:b3 5.5s ease-in-out infinite alternate; }
+    .fx-wrap .b4 { width:30%; height:40%; bottom:5%; left:8%; background:radial-gradient(ellipse,rgba(200,0,255,0.07) 0%,transparent 70%); animation:b4 8s ease-in-out infinite alternate; }
+    .fx-wrap .vig { position:absolute; inset:0; background:radial-gradient(ellipse 80% 75% at 50% 50%,transparent 38%,rgba(2,4,12,0.72) 100%); }
+    @keyframes b1 { 0%{opacity:.45;transform:scale(1) translate(0,0)} 100%{opacity:1;transform:scale(1.12) translate(5%,3%)} }
+    @keyframes b2 { 0%{opacity:.35;transform:scale(1.05) translate(0,0)} 100%{opacity:.9;transform:scale(1) translate(-4%,5%)} }
+    @keyframes b3 { 0%{opacity:.25;transform:scale(1)} 50%{opacity:.85;transform:scale(1.1)} 100%{opacity:.4;transform:scale(0.95)} }
+    @keyframes b4 { 0%{opacity:.2;transform:scale(1)} 100%{opacity:.65;transform:scale(1.18)} }
+    /* Hero card override — dark for slideshow */
     .hero-content {
-      position: relative;
-      z-index: 3;
-      background: rgba(4, 6, 14, 0.40);
-      border: 1px solid rgba(255,255,255,0.13);
-      box-shadow: 0 20px 55px rgba(0,0,0,0.5);
-      backdrop-filter: blur(3px);
+      position:relative; z-index:3;
+      background:rgba(4,6,14,0.42);
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:0 20px 55px rgba(0,0,0,0.52);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
     }
-    .hero-content h1 {
-      color: #f2ece0;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+    .hero-content::before {
+      background:linear-gradient(90deg,transparent,rgba(196,168,90,0.45),transparent);
     }
-    .hero-content p {
-      color: rgba(240, 232, 215, 0.88);
-      text-shadow: 0 1px 10px rgba(0,0,0,0.35);
+    .hero-content h1 { color:#f2ece0; text-shadow:0 2px 18px rgba(0,0,0,0.45); }
+    .hero-content h1 em { color:rgba(196,168,90,0.9); }
+    .hero-content p { color:rgba(240,232,215,0.86); text-shadow:0 1px 10px rgba(0,0,0,0.35); }
+
+    /* Slide indicator dots */
+    .slide-dots {
+      position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+      z-index:4; display:flex; gap:8px; align-items:center;
+    }
+    .slide-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:rgba(255,255,255,0.35);
+      transition:background 0.3s, transform 0.3s, width 0.3s;
+      cursor:pointer;
+    }
+    .slide-dot.active { background:var(--gold); transform:scale(1.3); width:20px; border-radius:4px; }
+
+    @media (max-width:768px) { .bg-slide { background-position:60% center; } }
+    @media (prefers-reduced-motion:reduce) {
+      .bg-slide { animation:bgFade 16s ease-in-out infinite; will-change:auto; }
+      .bg-slide.s1{animation-delay:0s} .bg-slide.s2{animation-delay:4s} .bg-slide.s3{animation-delay:8s} .bg-slide.s4{animation-delay:12s}
     }
 
-    @media (max-width: 768px) {
-      .bg-slide { background-position: 60% center; }
-    }
+    /* ── HOME PAGE SECTIONS ─────────────── */
+    .home-services { background:#f7f3ec; }
+    .home-why      { background:#fbf9f4; }
+    .home-cta      { background:var(--beige-bg); padding:80px 24px; text-align:center; }
+    .home-cta h2   { font-family:var(--font-display); font-size:clamp(26px,4vw,44px); font-weight:400; color:var(--text-dark); margin-bottom:14px; }
+    .home-cta h2 em { font-style:italic; color:var(--olive); }
+    .home-cta p    { font-size:15px; color:var(--text-muted); max-width:460px; margin:0 auto 30px; font-weight:300; line-height:1.8; }
+    .home-cta h2::after { display:none; }
 
-    @media (prefers-reduced-motion: reduce) {
-      .bg-slide { animation: bgFade 16s ease-in-out infinite; }
-      .bg-slide.s1 { animation-delay: 0s;  }
-      .bg-slide.s2 { animation-delay: 4s;  }
-      .bg-slide.s3 { animation-delay: 8s;  }
-      .bg-slide.s4 { animation-delay: 12s; }
+    /* Why choose us icons */
+    .why-icon { font-size:32px; margin-bottom:14px; display:block; transition:transform 0.32s cubic-bezier(0.22,1,0.36,1); }
+    .card:hover .why-icon { transform:scale(1.2) translateY(-3px); }
+
+    /* Stats bar */
+    .stats-bar {
+      background:linear-gradient(135deg,#2a3810,#3f5220);
+      padding:52px 40px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
+      text-align:center;
     }
+    .stat-item {}
+    .stat-num {
+      font-family:var(--font-display);
+      font-size:clamp(36px,5vw,56px);
+      font-weight:600;
+      color:var(--gold);
+      line-height:1;
+      letter-spacing:-1px;
+    }
+    .stat-label {
+      font-family:var(--font-body);
+      font-size:12px;
+      font-weight:500;
+      color:rgba(255,255,255,0.62);
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-top:8px;
+    }
+    @media (max-width:768px) { .stats-bar { grid-template-columns:repeat(2,1fr); padding:40px 20px; } }
+    @media (max-width:420px) { .stats-bar { grid-template-columns:1fr 1fr; gap:20px; } }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <button class="hamburger" onclick="toggleMenu()" aria-label="Open Menu">☰</button>
     <a href="index.html" class="logo-link">
-      <img
-        src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
-        alt="Sign Makers Pune Logo"
-        class="logo"
-      />
+      <img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo">
     </a>
   </header>
 
-  <!-- MOBILE SLIDE MENU -->
+  <div id="menuOverlay" class="menu-overlay"></div>
   <nav id="mobileMenu" class="mobile-menu">
     <button class="close-menu" onclick="toggleMenu()">✖</button>
-    <a href="index.html">Home</a>
+    <a href="index.html" class="active-page">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
     <a href="products.html">Products</a>
@@ -206,33 +139,144 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section id="home" class="hero">
     <div class="bg-slide s1"></div>
     <div class="bg-slide s2"></div>
     <div class="bg-slide s3"></div>
     <div class="bg-slide s4"></div>
-
     <div class="fx-wrap">
-      <div class="blob b1"></div>
-      <div class="blob b2"></div>
-      <div class="blob b3"></div>
-      <div class="blob b4"></div>
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <div class="blob b3"></div><div class="blob b4"></div>
       <div class="vig"></div>
     </div>
-
     <div class="hero-content">
-      <h1>Welcome to Sign Makers</h1>
+      <h1>Welcome to <em>Sign Makers</em></h1>
       <p>Premium Sign Boards &amp; Shop Branding in Pune</p>
       <a href="products.html" class="hero-btn">Explore Products</a>
     </div>
+    <div class="slide-dots">
+      <div class="slide-dot active" data-slide="0"></div>
+      <div class="slide-dot" data-slide="1"></div>
+      <div class="slide-dot" data-slide="2"></div>
+      <div class="slide-dot" data-slide="3"></div>
+    </div>
   </section>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("active");
-    }
-  </script>
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item reveal">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">5★</div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section home-services">
+    <span class="eyebrow">What We Do</span>
+    <h2>Our Services</h2>
+    <div class="ornament"><span></span></div>
+    <p>From precision cutting to full shop branding — we bring your vision to life with the finest materials and craftsmanship.</p>
+    <div class="services-grid reveal-group">
+      <div class="service-box">
+        <span style="font-size:34px;display:block;margin-bottom:14px;">💡</span>
+        <h3>LED Sign Boards</h3>
+        <p>Vibrant, energy-efficient LED signs that make your business shine day and night.</p>
+      </div>
+      <div class="service-box">
+        <span style="font-size:34px;display:block;margin-bottom:14px;">🔧</span>
+        <h3>CNC &amp; Laser Cutting</h3>
+        <p>Precision cutting on wood, acrylic, steel, and MDF for flawless results.</p>
+      </div>
+      <div class="service-box">
+        <span style="font-size:34px;display:block;margin-bottom:14px;">✨</span>
+        <h3>3D Profile Letters</h3>
+        <p>Bold, premium 3D lettering in stainless steel, acrylic, or brass finishes.</p>
+      </div>
+    </div>
+    <div style="margin-top:36px;">
+      <a href="services.html" class="hero-btn" style="background:transparent;border:1.5px solid var(--olive);color:var(--olive);box-shadow:none;">View All Services</a>
+    </div>
+  </section>
+
+  <!-- PARALLAX STRIP -->
+  <div class="parallax-strip">
+    <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1600&q=80&auto=format&fit=crop');"></div>
+    <div class="strip-label">
+      "Precision crafted. <em>Perfectly placed.</em>"
+      <span>Sign Makers Pune</span>
+    </div>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section home-why">
+    <span class="eyebrow">Why Choose Us</span>
+    <h2>The Sign Makers Difference</h2>
+    <div class="ornament"><span></span></div>
+    <div class="grid reveal-group">
+      <div class="card">
+        <span class="why-icon">🏆</span>
+        <h3>15+ Years of Expertise</h3>
+        <p>Decades of hands-on experience producing signage for hundreds of businesses across Pune.</p>
+      </div>
+      <div class="card">
+        <span class="why-icon">💎</span>
+        <h3>Premium Materials Only</h3>
+        <p>We never cut corners — every board uses top-grade acrylic, steel, LED, and durable finishes.</p>
+      </div>
+      <div class="card">
+        <span class="why-icon">⚡</span>
+        <h3>Fast Turnaround</h3>
+        <p>From design approval to installation — we deliver on time without compromising quality.</p>
+      </div>
+      <div class="card">
+        <span class="why-icon">🤝</span>
+        <h3>Honest Pricing</h3>
+        <p>Transparent quotes with no hidden costs. Premium quality at fair, competitive prices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="home-cta">
+    <h2>Ready to Make Your Brand <em>Unforgettable?</em></h2>
+    <p>Let's create signage that turns heads and builds trust from the very first glance.</p>
+    <a href="contact.html" class="hero-btn">Get in Touch</a>
+    &nbsp;&nbsp;
+    <a href="projects.html" class="hero-btn" style="background:transparent;border:1.5px solid var(--olive);color:var(--olive);box-shadow:none;margin-top:12px;">See Our Work</a>
+  </div>
+
+  <footer>© 2026 Sign Makers | All Rights Reserved</footer>
+
   <script src="script.js"></script>
+  <script>
+    /* Slide dot sync with bgFade animation */
+    const dots = document.querySelectorAll('.slide-dot');
+    let activeDot = 0;
+    function syncDots() {
+      dots.forEach((d,i) => d.classList.toggle('active', i === activeDot));
+      activeDot = (activeDot + 1) % dots.length;
+    }
+    syncDots();
+    setInterval(syncDots, 4000);
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        activeDot = parseInt(d.dataset.slide);
+        dots.forEach((x,i) => x.classList.toggle('active', i === activeDot));
+      });
+    });
+  </script>
 </body>
 </html>
