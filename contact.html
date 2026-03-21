@@ -2,115 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Sign Makers Pune</title>
   <link rel="stylesheet" href="style.css">
-</head>
+  <style>
+    .contact-link {
+      color: var(--olive);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color 0.2s, opacity 0.2s;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .contact-link:hover { color: var(--gold); opacity: 0.85; }
 
+    /* contact icon */
+    .contact-emoji {
+      font-size: 34px;
+      margin-bottom: 16px;
+      display: block;
+      line-height: 1;
+      transition: transform 0.32s cubic-bezier(0.22,1,0.36,1);
+    }
+    .contact-box:hover .contact-emoji { transform: scale(1.18) translateY(-2px); }
+
+    /* Map embed */
+    .map-section {
+      padding: 0;
+      line-height: 0;
+      position: relative;
+    }
+    .map-section iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+      filter: saturate(0.85) contrast(1.05);
+    }
+    .map-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--olive), transparent);
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* WhatsApp CTA */
+    .whatsapp-cta {
+      text-align: center;
+      padding: 64px 24px;
+      background: #f3efe6;
+      position: relative;
+      overflow: hidden;
+    }
+    .whatsapp-cta::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(196,168,90,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .whatsapp-cta h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px,3.5vw,38px);
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .whatsapp-cta h3 em { font-style: italic; color: var(--olive); }
+    .whatsapp-cta p {
+      font-size: 15px; color: var(--text-muted);
+      max-width: 440px; margin: 0 auto 28px;
+      font-weight: 300; line-height: 1.8;
+    }
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      background: #25d366;
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 600; font-size: 14.5px; letter-spacing: 0.4px;
+      border-radius: 50px; text-decoration: none;
+      box-shadow: 0 6px 22px rgba(37,211,102,0.30);
+      transition: background 0.25s, transform 0.28s, box-shadow 0.28s;
+    }
+    .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-3px); box-shadow: 0 14px 32px rgba(37,211,102,0.38); }
+    .whatsapp-btn svg { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+
+    @media (max-width:768px) {
+      .map-section iframe { height: 260px; }
+    }
+  </style>
+</head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
-
-    <!-- Hamburger Left -->
-    <div class="hamburger" onclick="toggleMenu()">
-      ☰
-    </div>
-  <!-- Logo RIGHT -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</button>
     <a href="index.html" class="logo-link">
-      <img
-        src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
-        alt="Sign Makers Pune Logo"
-        class="logo"
-      />
+      <img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo">
     </a>
-
   </header>
 
- <nav id="mobileMenu" class="mobile-menu">
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="toggleMenu()">✖</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html" class="active-page">Contact</a>
+  </nav>
 
-  <!-- CLOSE BUTTON -->
-  <button class="close-menu" onclick="toggleMenu()">✖</button>
+  <!-- PARALLAX HERO -->
+  <div class="parallax-strip" style="height:400px;">
+    <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=85&auto=format&fit=crop');"></div>
+    <div class="strip-label">
+      Get In Touch
+      <span>We'd love to hear from you</span>
+    </div>
+  </div>
 
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
-  <a href="projects.html">Projects</a>
-  <a href="reviews.html">Testimonials</a>
-  <a href="contact.html">Contact</a>
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section">
+    <span class="eyebrow">Contact Us</span>
+    <h2>Let's Build Something Great</h2>
+    <div class="ornament"><span></span></div>
+    <p>Reach out to Sign Makers Pune for premium signage and branding solutions tailored to your business.</p>
 
-</nav>
+    <div class="contact-grid reveal-group">
 
-
-  <!-- CONTACT PAGE CONTENT -->
-  <section id="contact" class="section light">
-
-    <h2>Contact Us</h2>
-
-    <p>
-      Get in touch with Sign Makers Pune for premium signage and branding solutions. 🌿✨
-    </p>
-
-    <!-- CONTACT BOX GRID -->
-    <div class="contact-grid">
-
-      <!-- Address Box -->
       <div class="contact-box">
-        📍
+        <span class="contact-emoji">📍</span>
         <h3>Our Address</h3>
-        <p>
-          293, White House Rd,<br>
-          Sathe Colony, Shukrawar Peth,<br>
-          Pune, Maharashtra 411002, India
-        </p>
+        <p>293, White House Rd,<br>Sathe Colony, Shukrawar Peth,<br>Pune, Maharashtra 411002</p>
       </div>
 
-      <!-- Phone Box -->
       <div class="contact-box">
-        📞
+        <span class="contact-emoji">📞</span>
         <h3>Call Us</h3>
-        <p>
-          <a href="tel:+919860629026" class="contact-link">
-            +91 9860629026
-          </a>
-        </p>
+        <p>We're available Mon–Sat, 10am–7pm</p>
+        <a href="tel:+919860629026" class="contact-link">+91 98606 29026</a>
       </div>
 
-      <!-- Email Box -->
       <div class="contact-box">
-        📧
+        <span class="contact-emoji">📧</span>
         <h3>Email Us</h3>
-        <p>
-          <a href="mailto:signmakerspune@gmail.com" class="contact-link">
-            signmakerspune@gmail.com
-          </a>
-        </p>
+        <p>Drop us a message and we'll get back within 24 hours</p>
+        <a href="mailto:signmakerspune@gmail.com" class="contact-link">signmakerspune@gmail.com</a>
       </div>
 
-      <!-- Maps Box -->
       <div class="contact-box">
-        🌍
+        <span class="contact-emoji">🗺️</span>
         <h3>View Location</h3>
-        <p>
-          <a href="https://maps.app.goo.gl/n8NYe1GSmhGY23fh8"
-             target="_blank"
-             class="contact-link">
-            Open in Google Maps
-          </a>
-        </p>
+        <p>Find us easily on Google Maps</p>
+        <a href="https://maps.app.goo.gl/n8NYe1GSmhGY23fh8" target="_blank" class="contact-link">Open in Google Maps ↗</a>
       </div>
 
     </div>
-
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Sign Makers | All Rights Reserved
-  </footer>
+  <!-- MAP -->
+  <div class="map-section reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.6490!2d73.8567!3d18.5196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDMxJzEwLjYiTiA3M8KwNTEnMjQuMSJF!5e0!3m2!1sen!2sin!4v1680000000000"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Sign Makers Pune Location">
+    </iframe>
+  </div>
 
-  <!-- SCRIPT -->
+  <!-- WHATSAPP CTA -->
+  <div class="whatsapp-cta">
+    <h3>Chat With Us on <em>WhatsApp</em></h3>
+    <p>Quick questions? Get an instant reply from our team on WhatsApp.</p>
+    <a href="https://wa.me/919860629026" target="_blank" class="whatsapp-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+
+  <footer>© 2026 Sign Makers | All Rights Reserved</footer>
+  <script src="script.js"></script>
+</body>
+</html>
   <script src="script.js"></script>
 
 </body>
