@@ -132,11 +132,12 @@ img, video { max-width: 100%; display: block; }
 }
 .logo:hover { opacity: 0.82; transform: scale(1.04); }
 
+/* ── Hamburger — olive on white ── */
 .hamburger {
   font-size: 26px;
   cursor: pointer;
   background: none; border: none;
-  color: #fff;
+  color: var(--olive);
   z-index: 100001;
   min-width: var(--touch-min);
   min-height: var(--touch-min);
@@ -145,9 +146,8 @@ img, video { max-width: 100%; display: block; }
   touch-action: manipulation;
   transition: background var(--dur-fast), transform var(--dur-fast);
 }
-.hamburger:hover  { background: rgba(255,255,255,0.10); }
+.hamburger:hover  { background: var(--olive-light); }
 .hamburger:active { transform: scale(0.92); }
-
 /* ===============================
    MOBILE MENU
 ================================ */
