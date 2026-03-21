@@ -1,6 +1,6 @@
 /* ==========================================
-   SIGN MAKERS PUNE — PREMIUM CSS v5
-   Beige + Olive Luxury Theme | Fully Fixed
+   SIGN MAKERS PUNE — PREMIUM CSS v6
+   Beige + Olive Luxury Theme | Parallax Edition
 ========================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap");
@@ -60,6 +60,7 @@ img, video {
 
 /* ===============================
    HEADER — TRANSLUCENT GLASS
+   Nav links + hamburger: WHITE
 ================================ */
 .site-header {
   position: fixed;
@@ -74,34 +75,38 @@ img, video {
   padding: 0 max(24px, env(safe-area-inset-left));
   padding-right: max(24px, env(safe-area-inset-right));
 
-  background: rgba(252, 248, 240, 0.45);
+  /* Deeper tint so white text stays legible */
+  background: rgba(40, 52, 22, 0.55);
   backdrop-filter: blur(22px) saturate(165%);
   -webkit-backdrop-filter: blur(22px) saturate(165%);
-  border-bottom: 1px solid rgba(85,107,47,0.12);
-  box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.14);
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .site-header.scrolled {
-  background: rgba(252, 248, 240, 0.90);
-  box-shadow: 0 4px 28px rgba(0,0,0,0.10);
+  background: rgba(40, 52, 22, 0.88);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.18);
 }
 
+/* Logo — enlarged slightly */
 .logo {
-  height: 50px;
+  height: 62px;           /* ↑ from 50px */
   width: auto;
   user-select: none;
   -webkit-user-drag: none;
   transition: opacity 0.25s, transform 0.25s;
+  filter: brightness(1.08);
 }
-.logo:hover { opacity: 0.82; transform: scale(1.03); }
+.logo:hover { opacity: 0.82; transform: scale(1.04); }
 
+/* Hamburger icon — pure white */
 .hamburger {
   font-size: 26px;
   cursor: pointer;
   background: none;
   border: none;
-  color: var(--olive);
+  color: #ffffff;          /* ← white */
   z-index: 100001;
   min-width: var(--touch-min);
   min-height: var(--touch-min);
@@ -112,8 +117,21 @@ img, video {
   touch-action: manipulation;
   transition: background 0.2s, transform 0.2s;
 }
-.hamburger:hover  { background: var(--olive-light); }
+.hamburger:hover  { background: rgba(255,255,255,0.12); }
 .hamburger:active { transform: scale(0.93); }
+
+/* If you have nav links in the desktop header */
+.site-header nav a,
+.site-header .nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14.5px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s;
+}
+.site-header nav a:hover,
+.site-header .nav-link:hover { opacity: 0.72; }
 
 /* ===============================
    MOBILE SLIDE MENU
@@ -220,10 +238,47 @@ img, video {
 .close-menu:active { transform: rotate(90deg) scale(0.9); }
 
 /* ===============================
-   HERO SECTION — FIXED
+   PARALLAX HELPER
+   .parallax-section wraps any
+   section that needs a depth BG
+================================ */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The actual parallax background layer */
+.parallax-section .parallax-bg {
+  position: absolute;
+  inset: -30% 0;          /* oversized so it has room to move */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark scrim over parallax bg */
+.parallax-section .parallax-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 18, 8, 0.52);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Anything inside the section that needs to sit above bg */
+.parallax-section > *:not(.parallax-bg):not(.parallax-scrim) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===============================
+   HERO SECTION — PARALLAX
 ================================ */
 .hero {
-  /* height fills viewport minus header */
   height: calc(100svh - var(--header-h));
   min-height: 500px;
   display: flex;
@@ -234,7 +289,7 @@ img, video {
   padding: 32px 24px;
   overflow: hidden;
 
-  /* Default bg — overridden per-page */
+  /* background-attachment:fixed drives the CSS parallax on desktop */
   background: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=85&auto=format&fit=crop")
     no-repeat center center / cover;
   background-attachment: fixed;
@@ -326,7 +381,6 @@ img, video {
 .reveal-group.revealed > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.31s; }
 .reveal-group.revealed > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.40s; }
 .reveal-group.revealed > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.48s; }
-/* Safety net: any child beyond 6 also reveals */
 .reveal-group.revealed > *:nth-child(n+7) { opacity:1; transform:none; transition-delay:0.52s; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,6 +433,62 @@ img, video {
 #contact      { background: #faf8f3; }
 
 /* ===============================
+   PARALLAX DIVIDER STRIPS
+   Drop between sections for depth
+================================ */
+.parallax-strip {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-strip .parallax-strip-bg {
+  position: absolute;
+  inset: -30% 0;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.parallax-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 42, 14, 0.60);
+  z-index: 1;
+}
+
+.parallax-strip .strip-label {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  padding: 0 24px;
+}
+
+.parallax-strip .strip-label span {
+  display: block;
+  font-family: "Jost", sans-serif;
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 10px;
+}
+
+/* ===============================
    GRID SYSTEM
 ================================ */
 .grid,
@@ -394,9 +504,7 @@ img, video {
 }
 
 /* ===============================
-   SERVICES GRID — FIXED
-   Force 3 columns on desktop,
-   never stretches awkwardly
+   SERVICES GRID
 ================================ */
 .services-grid {
   grid-template-columns: repeat(3, 1fr);
@@ -454,7 +562,6 @@ img, video {
   box-shadow: var(--shadow-hover);
 }
 
-/* Touch devices: scale tap instead of lift */
 @media (hover: none) {
   .card:hover,
   .service-box:hover,
@@ -628,14 +735,13 @@ img, video {
 }
 
 /* ===============================
-   TESTIMONIALS — FIXED
+   TESTIMONIALS
 ================================ */
 .testimonial-slider {
   margin-top: 48px;
   max-width: 780px;
   margin-left: auto;
   margin-right: auto;
-  /* prevent overflow on narrow screens */
   width: 100%;
   padding: 0 4px;
 }
@@ -649,7 +755,6 @@ img, video {
   box-shadow: var(--shadow-soft);
   text-align: center;
   position: relative;
-  /* prevent text overflow */
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -673,7 +778,6 @@ img, video {
   font-style: italic;
   line-height: 1.95;
   color: rgba(44,44,44,0.78);
-  /* don't let long text break layout */
   max-width: 100%;
 }
 
@@ -686,7 +790,6 @@ img, video {
   letter-spacing: 1.1px;
 }
 
-/* Slider nav dots if present */
 .slider-dots {
   display: flex;
   justify-content: center;
@@ -726,9 +829,7 @@ img, video {
 }
 
 /* ===============================
-   PROJECTS GRID — FIXED
-   Images no longer overflow,
-   consistent tile sizing
+   PROJECTS GRID
 ================================ */
 .projects-grid {
   margin-top: 48px;
@@ -737,18 +838,15 @@ img, video {
   max-width: 1160px;
   margin-left: auto;
   margin-right: auto;
-  /* 3 cols desktop, scales down responsively */
   grid-template-columns: repeat(3, 1fr);
-  /* Contain everything within section */
   width: 100%;
 }
 
 .projects-grid img,
 .projects-grid video {
   width: 100%;
-  /* fixed height tile — no overflow */
   height: 240px;
-  object-fit: cover;      /* fill tile, crop edges rather than overflow */
+  object-fit: cover;
   background: #f0ece4;
   border-radius: var(--radius);
   border: 1px solid rgba(0,0,0,0.07);
@@ -756,7 +854,7 @@ img, video {
   transition: transform 0.34s cubic-bezier(0.22,1,0.36,1), box-shadow 0.34s;
   cursor: pointer;
   will-change: transform;
-  display: block;         /* remove inline gap */
+  display: block;
 }
 
 .projects-grid img:hover,
@@ -796,14 +894,20 @@ footer {
 
   body { overflow-x: hidden; }
 
-  /* ── Sections ── */
+  .logo { height: 50px; }  /* scale back on mobile */
+
   .section { padding: 58px 16px; }
   .section h2 { font-size: 26px; }
   .section > p { font-size: 14.5px; }
 
-  /* ── Hero ── */
+  /* Disable fixed-attachment parallax on iOS (causes rendering bugs) */
+  .hero,
+  .parallax-section .parallax-bg,
+  .parallax-strip .parallax-strip-bg {
+    background-attachment: scroll;
+  }
+
   .hero {
-    background-attachment: scroll; /* fix iOS parallax bug */
     height: auto;
     min-height: calc(100svh - var(--header-h));
     padding: 28px 16px;
@@ -813,7 +917,6 @@ footer {
     max-width: 100%;
     padding: 28px 20px;
     border-radius: 16px;
-    /* lighter backdrop blur on mobile = better perf */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -825,7 +928,8 @@ footer {
     align-items: center;
   }
 
-  /* ── Services: stack to 1 col ── */
+  .parallax-strip { height: 220px; }
+
   .services-grid {
     grid-template-columns: 1fr !important;
     max-width: 440px !important;
@@ -834,7 +938,6 @@ footer {
     gap: 14px !important;
   }
 
-  /* ── About highlights: stack to 1 col ── */
   .about-highlights {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
@@ -842,7 +945,6 @@ footer {
   }
   .about-card { min-height: auto; padding: 24px 18px; }
 
-  /* ── Expertise: stack to 1 col ── */
   .about-services ul {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
@@ -853,7 +955,6 @@ footer {
   }
   .about-services h3 { font-size: 22px; }
 
-  /* ── Projects: 2 cols on mobile ── */
   .projects-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 10px;
@@ -862,27 +963,23 @@ footer {
   .projects-grid video {
     height: 150px;
     border-radius: 12px;
-    padding: 0;         /* no padding — object-fit:cover handles it */
+    padding: 0;
   }
 
-  /* ── Testimonials ── */
   .testimonial { padding: 26px 18px; }
   .testimonial p { font-size: 14.5px; line-height: 1.82; }
   .testimonial-slider { padding: 0; }
 
-  /* ── Contact ── */
   .contact-grid {
     grid-template-columns: 1fr !important;
     gap: 12px;
   }
   .contact-box { min-height: 155px; padding: 22px 18px; }
 
-  /* ── Products ── */
   .products-section { padding: 44px 16px; }
   .products-hero { padding: 55px 16px; }
   .products-hero p { font-size: 15px; }
 
-  /* ── General grids ── */
   .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
 }
 
@@ -892,12 +989,13 @@ footer {
 @media (max-width: 420px) {
   :root { --header-h: 62px; }
 
+  .logo { height: 44px; }
+
   .section { padding: 48px 12px; }
   .section h2 { font-size: 23px; }
 
   .hero-content { padding: 22px 14px; }
 
-  /* Projects: single column on very small phones */
   .projects-grid {
     grid-template-columns: 1fr !important;
     gap: 10px;
