@@ -84,7 +84,7 @@ body {
 img, video { max-width: 100%; display: block; }
 
 /* ===============================
-   HEADER
+   HEADER — PURE WHITE
 ================================ */
 .site-header {
   position: fixed;
@@ -95,33 +95,39 @@ img, video { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 max(24px, env(safe-area-inset-left));
-  padding-right: max(24px, env(safe-area-inset-right));
-  background: rgba(34,46,16,0.58);
-  backdrop-filter: blur(22px) saturate(155%);
-  -webkit-backdrop-filter: blur(22px) saturate(155%);
-  border-bottom: 1px solid rgba(196,168,90,0.13);
-  box-shadow: 0 2px 24px rgba(0,0,0,0.14);
+  padding: 0 max(28px, env(safe-area-inset-left));
+  padding-right: max(28px, env(safe-area-inset-right));
+ 
+  /* Pure white */
+  background: #ffffff;
+  border-bottom: 1px solid rgba(85,107,47,0.12);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
   transition: background var(--dur-mid) ease, box-shadow var(--dur-mid) ease;
   transform: translateZ(0);
   will-change: background;
 }
+ 
+/* Scrolled: stays white, shadow deepens, gold accent line appears */
 .site-header.scrolled {
-  background: rgba(34,46,16,0.94);
-  box-shadow: 0 4px 28px rgba(0,0,0,0.22);
+  background: #ffffff;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.11);
 }
+ 
 .site-header.scrolled::after {
   content: "";
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.42), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.45), rgba(85,107,47,0.35), transparent);
 }
-
+ 
+/* ── Logo — bigger & visible on white ── */
 .logo {
-  height: 62px; width: auto;
+  height: 72px; width: auto;
   user-select: none;
   -webkit-user-drag: none;
+  /* No filter needed on white bg — let it render naturally */
+  filter: none;
   transition: opacity var(--dur-fast), transform var(--dur-fast);
 }
 .logo:hover { opacity: 0.82; transform: scale(1.04); }
