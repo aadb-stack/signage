@@ -87,6 +87,7 @@
       <div class="product-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 1 7 7 7 7 0 0 1-4.5 6.5V17a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1.5A7 7 0 0 1 5 9a7 7 0 0 1 7-7z"/></svg></div>
       <h2>LED Sign Boards</h2>
       <p>Our LED sign boards are bright, durable, and perfect for outdoor visibility. Ideal for shops, restaurants, showrooms, and businesses looking to attract customers even at night.</p>
+      <button class="view-products-btn" onclick="openGallery('led')">View Gallery</button>
     </div>
 
     <div class="product-card reveal">
@@ -127,6 +128,43 @@
     </div>
 
   </section>
+
+  <!-- LED GALLERY -->
+  <div id="galleryOverlay-led" class="gallery-overlay" onclick="closeGalleryOutside(event,'led')">
+    <div class="gallery-modal">
+      <button class="gallery-close" onclick="closeGallery('led')">✕</button>
+      <h3 class="gallery-title">LED Sign Boards</h3>
+      <div class="gallery-grid">
+        <img src="https://i.ibb.co/RGx43F3X/2023-02-08-12.webp" alt="LED 1" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/JFzvp6Dk/2023-02-08-11.webp" alt="LED 2" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/9knXkzkv/2021-06-18-13.webp" alt="LED 3" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/vCn0cRWM/2023-02-08-10.webp" alt="LED 4" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/hNMkm03/2021-06-18-12.webp" alt="LED 5" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/ksWM05Kq/2023-02-08-9.webp" alt="LED 6" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/J941w64/2023-02-08-8.webp" alt="LED 7" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/1f0qkLvN/2023-02-08-7.webp" alt="LED 8" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/svfbrLY6/2021-06-18-10.webp" alt="LED 9" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/99Cwz820/2021-06-18-9.webp" alt="LED 10" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/S4kRMKYj/2023-02-08-6.webp" alt="LED 11" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/JFSkGjGX/2021-06-18-8.webp" alt="LED 12" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/xtznzxRx/2023-02-08-5.webp" alt="LED 13" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/KzSgnsDp/2023-02-08-4.webp" alt="LED 14" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/TDSMnL85/2023-02-08-3.webp" alt="LED 15" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/C5K4ZFnw/2021-06-18-7.webp" alt="LED 16" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/FbH8K18C/unnamed.webp" alt="LED 17" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/ynRVzGZT/2021-06-18-6.webp" alt="LED 18" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/B2YyvzHC/2021-06-18-5.webp" alt="LED 19" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/yFL395F1/2021-06-18-4.webp" alt="LED 20" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/LDs3SwhR/2021-06-18-3.webp" alt="LED 21" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/JWn69NKm/2021-06-18-2.webp" alt="LED 22" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/zW80L2B7/2021-06-18-1.webp" alt="LED 23" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/S4Jbbzvc/2021-06-18.webp" alt="LED 24" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/SDmGFk6R/2023-02-08-2.webp" alt="LED 25" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/9kqZ7KHx/2023-02-08-1.webp" alt="LED 26" onclick="openLightbox(this,'led')">
+        <img src="https://i.ibb.co/Q7RW0TzS/2023-02-08.webp" alt="LED 27" onclick="openLightbox(this,'led')">
+      </div>
+    </div>
+  </div>
 
   <!-- STEEL GALLERY -->
   <div id="galleryOverlay-steel" class="gallery-overlay" onclick="closeGalleryOutside(event,'steel')">
@@ -193,7 +231,9 @@
   <footer>© 2026 Sign Makers | All Rights Reserved</footer>
   <script src="script.js"></script>
   <script>
-    const galleries={steel:["https://i.ibb.co/d4c1X2G4/Whats-App-Image-2026-03-05-at-11-37-27-PM-1.jpg","https://i.ibb.co/wF366b6R/Whats-App-Image-2026-03-05-at-11-37-26-PM-7.jpg","https://i.ibb.co/BHYK4CQq/Whats-App-Image-2026-03-05-at-11-37-26-PM-6.jpg","https://i.ibb.co/GvhmdVX4/Whats-App-Image-2026-03-05-at-11-37-26-PM-5.jpg","https://i.ibb.co/NgjMDwDq/Whats-App-Image-2026-03-05-at-11-37-26-PM-4.jpg","https://i.ibb.co/fVC6FvkV/Whats-App-Image-2026-03-05-at-11-37-25-PM-7.jpg","https://i.ibb.co/6c5vfW23/Whats-App-Image-2026-03-05-at-11-37-25-PM-6.jpg","https://i.ibb.co/xKk34kSM/Whats-App-Image-2026-03-05-at-11-37-25-PM-5.jpg","https://i.ibb.co/s97RtrRw/Whats-App-Image-2026-03-05-at-11-37-25-PM-4.jpg","https://i.ibb.co/bybSx6x/Whats-App-Image-2026-03-05-at-11-37-24-PM-5.jpg","https://i.ibb.co/99xD9m72/Whats-App-Image-2026-03-05-at-11-37-24-PM-4.jpg","https://i.ibb.co/HL6dyNCm/Whats-App-Image-2026-03-05-at-11-37-24-PM-3.jpg","https://i.ibb.co/MkPg8n95/Whats-App-Image-2026-03-05-at-11-37-23-PM-6.jpg","https://i.ibb.co/prb3J7YG/Whats-App-Image-2026-03-05-at-11-37-23-PM-5.jpg","https://i.ibb.co/cScq4X91/Whats-App-Image-2026-03-05-at-11-37-23-PM-4.jpg"],nameplates:["https://i.ibb.co/xq9wgNRF/Whats-App-Image-2026-03-02-at-10-58-49-PM.jpg","https://i.ibb.co/x87G631W/Whats-App-Image-2026-03-02-at-10-58-46-PM.jpg","https://i.ibb.co/9mkqmCNj/Whats-App-Image-2026-03-02-at-10-58-43-PM.jpg","https://i.ibb.co/mFYrXr3q/Whats-App-Image-2026-03-02-at-10-58-41-PM.jpg","https://i.ibb.co/yFP29nmr/Whats-App-Image-2026-03-02-at-10-58-38-PM-1.jpg","https://i.ibb.co/S4gkf6tz/Whats-App-Image-2026-03-02-at-10-58-38-PM.jpg","https://i.ibb.co/TBr6mxkC/Whats-App-Image-2026-03-02-at-10-58-37-PM-3.jpg","https://i.ibb.co/5WS1sBmm/Whats-App-Image-2026-03-02-at-10-58-37-PM-2.jpg","https://i.ibb.co/sJqjYG0q/Whats-App-Image-2026-03-02-at-10-58-37-PM-1.jpg","https://i.ibb.co/RkrJfRFP/Whats-App-Image-2026-03-02-at-10-58-37-PM.jpg","https://i.ibb.co/QvYzhD7p/Whats-App-Image-2026-03-02-at-10-58-36-PM.jpg","https://i.ibb.co/39Fh8p85/Whats-App-Image-2026-03-02-at-10-58-35-PM.jpg","https://i.ibb.co/XxnXH6R0/Whats-App-Image-2026-03-02-at-10-58-34-PM-1.jpg","https://i.ibb.co/mFFfXX8F/Whats-App-Image-2026-03-02-at-10-58-34-PM.jpg","https://i.ibb.co/qLnt896v/Whats-App-Image-2026-03-02-at-10-58-32-PM.jpg","https://i.ibb.co/66DCKg0/Whats-App-Image-2026-03-02-at-10-58-31-PM-1.jpg","https://i.ibb.co/vCvw0fQv/Whats-App-Image-2026-03-02-at-10-58-31-PM.jpg","https://i.ibb.co/YT17yD8T/Whats-App-Image-2026-03-02-at-10-58-30-PM-2.jpg","https://i.ibb.co/qLdTrVwn/Whats-App-Image-2026-03-02-at-10-58-30-PM-1.jpg","https://i.ibb.co/SgHPxnv/Whats-App-Image-2026-03-02-at-10-58-30-PM.jpg"]};
+    const galleries={
+      led:["https://i.ibb.co/RGx43F3X/2023-02-08-12.webp","https://i.ibb.co/JFzvp6Dk/2023-02-08-11.webp","https://i.ibb.co/9knXkzkv/2021-06-18-13.webp","https://i.ibb.co/vCn0cRWM/2023-02-08-10.webp","https://i.ibb.co/hNMkm03/2021-06-18-12.webp","https://i.ibb.co/ksWM05Kq/2023-02-08-9.webp","https://i.ibb.co/J941w64/2023-02-08-8.webp","https://i.ibb.co/1f0qkLvN/2023-02-08-7.webp","https://i.ibb.co/svfbrLY6/2021-06-18-10.webp","https://i.ibb.co/99Cwz820/2021-06-18-9.webp","https://i.ibb.co/S4kRMKYj/2023-02-08-6.webp","https://i.ibb.co/JFSkGjGX/2021-06-18-8.webp","https://i.ibb.co/xtznzxRx/2023-02-08-5.webp","https://i.ibb.co/KzSgnsDp/2023-02-08-4.webp","https://i.ibb.co/TDSMnL85/2023-02-08-3.webp","https://i.ibb.co/C5K4ZFnw/2021-06-18-7.webp","https://i.ibb.co/FbH8K18C/unnamed.webp","https://i.ibb.co/ynRVzGZT/2021-06-18-6.webp","https://i.ibb.co/B2YyvzHC/2021-06-18-5.webp","https://i.ibb.co/yFL395F1/2021-06-18-4.webp","https://i.ibb.co/LDs3SwhR/2021-06-18-3.webp","https://i.ibb.co/JWn69NKm/2021-06-18-2.webp","https://i.ibb.co/zW80L2B7/2021-06-18-1.webp","https://i.ibb.co/S4Jbbzvc/2021-06-18.webp","https://i.ibb.co/SDmGFk6R/2023-02-08-2.webp","https://i.ibb.co/9kqZ7KHx/2023-02-08-1.webp","https://i.ibb.co/Q7RW0TzS/2023-02-08.webp"],
+      steel:["https://i.ibb.co/d4c1X2G4/Whats-App-Image-2026-03-05-at-11-37-27-PM-1.jpg","https://i.ibb.co/wF366b6R/Whats-App-Image-2026-03-05-at-11-37-26-PM-7.jpg","https://i.ibb.co/BHYK4CQq/Whats-App-Image-2026-03-05-at-11-37-26-PM-6.jpg","https://i.ibb.co/GvhmdVX4/Whats-App-Image-2026-03-05-at-11-37-26-PM-5.jpg","https://i.ibb.co/NgjMDwDq/Whats-App-Image-2026-03-05-at-11-37-26-PM-4.jpg","https://i.ibb.co/fVC6FvkV/Whats-App-Image-2026-03-05-at-11-37-25-PM-7.jpg","https://i.ibb.co/6c5vfW23/Whats-App-Image-2026-03-05-at-11-37-25-PM-6.jpg","https://i.ibb.co/xKk34kSM/Whats-App-Image-2026-03-05-at-11-37-25-PM-5.jpg","https://i.ibb.co/s97RtrRw/Whats-App-Image-2026-03-05-at-11-37-25-PM-4.jpg","https://i.ibb.co/bybSx6x/Whats-App-Image-2026-03-05-at-11-37-24-PM-5.jpg","https://i.ibb.co/99xD9m72/Whats-App-Image-2026-03-05-at-11-37-24-PM-4.jpg","https://i.ibb.co/HL6dyNCm/Whats-App-Image-2026-03-05-at-11-37-24-PM-3.jpg","https://i.ibb.co/MkPg8n95/Whats-App-Image-2026-03-05-at-11-37-23-PM-6.jpg","https://i.ibb.co/prb3J7YG/Whats-App-Image-2026-03-05-at-11-37-23-PM-5.jpg","https://i.ibb.co/cScq4X91/Whats-App-Image-2026-03-05-at-11-37-23-PM-4.jpg"],nameplates:["https://i.ibb.co/xq9wgNRF/Whats-App-Image-2026-03-02-at-10-58-49-PM.jpg","https://i.ibb.co/x87G631W/Whats-App-Image-2026-03-02-at-10-58-46-PM.jpg","https://i.ibb.co/9mkqmCNj/Whats-App-Image-2026-03-02-at-10-58-43-PM.jpg","https://i.ibb.co/mFYrXr3q/Whats-App-Image-2026-03-02-at-10-58-41-PM.jpg","https://i.ibb.co/yFP29nmr/Whats-App-Image-2026-03-02-at-10-58-38-PM-1.jpg","https://i.ibb.co/S4gkf6tz/Whats-App-Image-2026-03-02-at-10-58-38-PM.jpg","https://i.ibb.co/TBr6mxkC/Whats-App-Image-2026-03-02-at-10-58-37-PM-3.jpg","https://i.ibb.co/5WS1sBmm/Whats-App-Image-2026-03-02-at-10-58-37-PM-2.jpg","https://i.ibb.co/sJqjYG0q/Whats-App-Image-2026-03-02-at-10-58-37-PM-1.jpg","https://i.ibb.co/RkrJfRFP/Whats-App-Image-2026-03-02-at-10-58-37-PM.jpg","https://i.ibb.co/QvYzhD7p/Whats-App-Image-2026-03-02-at-10-58-36-PM.jpg","https://i.ibb.co/39Fh8p85/Whats-App-Image-2026-03-02-at-10-58-35-PM.jpg","https://i.ibb.co/XxnXH6R0/Whats-App-Image-2026-03-02-at-10-58-34-PM-1.jpg","https://i.ibb.co/mFFfXX8F/Whats-App-Image-2026-03-02-at-10-58-34-PM.jpg","https://i.ibb.co/qLnt896v/Whats-App-Image-2026-03-02-at-10-58-32-PM.jpg","https://i.ibb.co/66DCKg0/Whats-App-Image-2026-03-02-at-10-58-31-PM-1.jpg","https://i.ibb.co/vCvw0fQv/Whats-App-Image-2026-03-02-at-10-58-31-PM.jpg","https://i.ibb.co/YT17yD8T/Whats-App-Image-2026-03-02-at-10-58-30-PM-2.jpg","https://i.ibb.co/qLdTrVwn/Whats-App-Image-2026-03-02-at-10-58-30-PM-1.jpg","https://i.ibb.co/SgHPxnv/Whats-App-Image-2026-03-02-at-10-58-30-PM.jpg"]};
     let currentGallery='steel',currentIndex=0;
     function openGallery(n){currentGallery=n;document.getElementById('galleryOverlay-'+n).classList.add('open');document.body.style.overflow='hidden';}
     function closeGallery(n){document.getElementById('galleryOverlay-'+n).classList.remove('open');document.body.style.overflow='';}
@@ -202,10 +242,6 @@
     function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
     function changeImage(d,e){e.stopPropagation();const imgs=galleries[currentGallery];currentIndex=(currentIndex+d+imgs.length)%imgs.length;document.getElementById('lightboxImg').src=imgs[currentIndex];}
     document.addEventListener('keydown',function(e){if(document.getElementById('lightbox').classList.contains('open')){if(e.key==='ArrowRight')changeImage(1,{stopPropagation:()=>{}});if(e.key==='ArrowLeft')changeImage(-1,{stopPropagation:()=>{}});if(e.key==='Escape')closeLightbox();}Object.keys(galleries).forEach(n=>{const el=document.getElementById('galleryOverlay-'+n);if(el&&el.classList.contains('open')&&e.key==='Escape')closeGallery(n);});});
-  </script>
-</body>
-</html>
-  
   </script>
 </body>
 </html>
