@@ -1,7 +1,6 @@
 /* ==========================================
-   SIGN MAKERS PUNE — PREMIUM CSS v9
+   SIGN MAKERS PUNE — PREMIUM CSS v8
    Beige + Olive + Gold | Luxury Refined
-   Header: pure white text & elements
 ========================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap");
@@ -30,12 +29,13 @@
 
   --radius:        18px;
   --radius-sm:     12px;
-  --header-h:      90px;
+  --header-h:      80px;
   --touch-min:     48px;
 
   --font-display:  "Cormorant Garamond", Georgia, serif;
   --font-body:     "Jost", sans-serif;
 
+  /* Animation durations — easier to slow down on mobile */
   --dur-fast:      0.28s;
   --dur-mid:       0.55s;
   --dur-slow:      0.82s;
@@ -44,6 +44,7 @@
 
 /* ===============================
    GRAIN — GPU-COMPOSITED LAYER
+   Uses opacity only (no repaints)
 ================================ */
 body::after {
   content: "";
@@ -83,7 +84,7 @@ body {
 img, video { max-width: 100%; display: block; }
 
 /* ===============================
-   HEADER — PURE WHITE
+   HEADER
 ================================ */
 .site-header {
   position: fixed;
@@ -94,49 +95,42 @@ img, video { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 max(28px, env(safe-area-inset-left));
-  padding-right: max(28px, env(safe-area-inset-right));
-
-  /* Pure white */
-  background: #ffffff;
-  border-bottom: 1px solid rgba(85,107,47,0.12);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+  padding: 0 max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+  background: rgba(34,46,16,0.58);
+  backdrop-filter: blur(22px) saturate(155%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  border-bottom: 1px solid rgba(196,168,90,0.13);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.14);
   transition: background var(--dur-mid) ease, box-shadow var(--dur-mid) ease;
   transform: translateZ(0);
   will-change: background;
 }
-
-/* Scrolled: stays white, shadow deepens, gold accent line appears */
 .site-header.scrolled {
-  background: #ffffff;
-  box-shadow: 0 4px 28px rgba(0,0,0,0.11);
+  background: rgba(34,46,16,0.94);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.22);
 }
-
 .site-header.scrolled::after {
   content: "";
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.45), rgba(85,107,47,0.35), transparent);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,168,90,0.42), transparent);
 }
 
-/* ── Logo — bigger & visible on white ── */
 .logo {
-  height: 72px; width: auto;
+  height: 62px; width: auto;
   user-select: none;
   -webkit-user-drag: none;
-  /* No filter needed on white bg — let it render naturally */
-  filter: none;
   transition: opacity var(--dur-fast), transform var(--dur-fast);
 }
 .logo:hover { opacity: 0.82; transform: scale(1.04); }
 
-/* ── Hamburger — olive on white ── */
 .hamburger {
   font-size: 26px;
   cursor: pointer;
   background: none; border: none;
-  color: var(--olive);
+  color: #fff;
   z-index: 100001;
   min-width: var(--touch-min);
   min-height: var(--touch-min);
@@ -145,22 +139,8 @@ img, video { max-width: 100%; display: block; }
   touch-action: manipulation;
   transition: background var(--dur-fast), transform var(--dur-fast);
 }
-.hamburger:hover  { background: var(--olive-light); }
+.hamburger:hover  { background: rgba(255,255,255,0.10); }
 .hamburger:active { transform: scale(0.92); }
-
-/* ── Desktop nav links — olive on white ── */
-.site-header nav a,
-.site-header .nav-link {
-  color: var(--olive);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.4px;
-  transition: color var(--dur-fast), opacity var(--dur-fast);
-}
-.site-header nav a:hover,
-.site-header .nav-link:hover { color: var(--olive-dark); opacity: 0.80; }
 
 /* ===============================
    MOBILE MENU
@@ -168,7 +148,7 @@ img, video { max-width: 100%; display: block; }
 .mobile-menu {
   position: fixed;
   top: 0; left: -100%;
-  width: min(280px, 82vw);
+  width: min(280px,82vw);
   height: 100dvh;
   background: rgba(254,252,246,0.98);
   backdrop-filter: blur(18px);
@@ -333,13 +313,13 @@ img, video { max-width: 100%; display: block; }
   transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
   will-change: opacity, transform;
 }
-.reveal-group.revealed > *:nth-child(1)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.04s; }
-.reveal-group.revealed > *:nth-child(2)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.12s; }
-.reveal-group.revealed > *:nth-child(3)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.20s; }
-.reveal-group.revealed > *:nth-child(4)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.28s; }
-.reveal-group.revealed > *:nth-child(5)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.36s; }
-.reveal-group.revealed > *:nth-child(6)   { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.44s; }
-.reveal-group.revealed > *:nth-child(n+7) { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.50s; }
+.reveal-group.revealed > *:nth-child(1)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.04s; }
+.reveal-group.revealed > *:nth-child(2)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.12s; }
+.reveal-group.revealed > *:nth-child(3)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.20s; }
+.reveal-group.revealed > *:nth-child(4)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.28s; }
+.reveal-group.revealed > *:nth-child(5)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.36s; }
+.reveal-group.revealed > *:nth-child(6)  { opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.44s; }
+.reveal-group.revealed > *:nth-child(n+7){ opacity:1; transform:translateY(0) translateZ(0); transition-delay:0.50s; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-group > * { opacity:1; transform:none; transition:none; }
@@ -377,6 +357,7 @@ img, video { max-width: 100%; display: block; }
   color: var(--text-muted); font-weight: 300;
 }
 
+/* Section bg tints */
 #about        { background: #fbf9f4; }
 #services     { background: #f7f3ec; }
 #products     { background: #f5f0e7; }
@@ -384,6 +365,7 @@ img, video { max-width: 100%; display: block; }
 #testimonials { background: #f4f6f0; }
 #contact      { background: #faf8f3; }
 
+/* Utility: gold eyebrow label */
 .eyebrow {
   display: block;
   font-family: var(--font-body);
@@ -393,6 +375,7 @@ img, video { max-width: 100%; display: block; }
   margin-bottom: 12px;
 }
 
+/* Utility: ornament divider */
 .ornament {
   display: flex; align-items: center; justify-content: center; gap: 12px;
   margin-top: 14px;
@@ -517,59 +500,6 @@ img, video { max-width: 100%; display: block; }
 }
 
 /* ===============================
-   SVG CARD ICONS
-   Used in about, services, contact,
-   index cards — replaces all emojis
-================================ */
-.card-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(85,107,47,0.09), rgba(196,168,90,0.11));
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 18px;
-  transition: background var(--dur-mid), transform var(--dur-mid);
-}
-.card-icon svg {
-  width: 24px; height: 24px;
-  stroke: var(--olive); fill: none;
-  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
-  transition: stroke var(--dur-mid);
-}
-.card:hover .card-icon,
-.service-box:hover .card-icon,
-.about-card:hover .card-icon,
-.contact-box:hover .card-icon {
-  background: linear-gradient(135deg, rgba(85,107,47,0.16), rgba(196,168,90,0.20));
-  transform: scale(1.12) translateY(-2px);
-}
-.card:hover .card-icon svg,
-.service-box:hover .card-icon svg,
-.about-card:hover .card-icon svg,
-.contact-box:hover .card-icon svg { stroke: var(--gold); }
-
-/* ===============================
-   EXPERTISE GRID SVG ICONS
-================================ */
-.expertise-icon {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(85,107,47,0.10), rgba(196,168,90,0.12));
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background var(--dur-mid);
-}
-.expertise-icon svg {
-  width: 18px; height: 18px;
-  stroke: var(--olive); fill: none;
-  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-  transition: stroke var(--dur-mid);
-}
-.expertise-item:hover .expertise-icon {
-  background: linear-gradient(135deg, rgba(85,107,47,0.16), rgba(196,168,90,0.20));
-}
-.expertise-item:hover .expertise-icon svg { stroke: var(--gold); }
-
-/* ===============================
    ABOUT — INTRO
 ================================ */
 .about-intro { max-width: 700px; margin: 26px auto 0; text-align: center; }
@@ -594,14 +524,23 @@ img, video { max-width: 100%; display: block; }
 .about-card:nth-child(4) { border-top: 2px solid rgba(196,168,90,0.4); }
 
 /* ===============================
-   ABOUT — EXPERTISE SECTION
+   ABOUT — OUR EXPERTISE
 ================================ */
-.about-services { margin-top: 72px; text-align: center; }
-.about-services-header { margin-bottom: 44px; }
+.about-services {
+  margin-top: 72px;
+  text-align: center;
+}
+
+.about-services-header {
+  margin-bottom: 44px;
+}
 .about-services-header h3 {
   font-family: var(--font-display);
-  font-size: clamp(26px,3.5vw,38px); font-weight: 400;
-  color: var(--text-dark); letter-spacing: -0.4px; line-height: 1.1;
+  font-size: clamp(26px,3.5vw,38px);
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: -0.4px;
+  line-height: 1.1;
   display: inline-block;
 }
 .about-services-header h3::after {
@@ -624,17 +563,23 @@ img, video { max-width: 100%; display: block; }
   list-style: none !important;
   padding: 0 !important;
 }
+
 .expertise-item {
   background: #ffffff;
   border: 1px solid rgba(0,0,0,0.065);
   border-left: 3px solid var(--olive);
   border-radius: var(--radius-sm);
   padding: 16px 20px;
-  display: flex; align-items: center; gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.045);
   text-align: left;
-  position: relative; overflow: hidden;
-  transition: transform var(--dur-mid) var(--ease-out), box-shadow var(--dur-mid), border-color var(--dur-mid);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-mid) var(--ease-out),
+              box-shadow var(--dur-mid),
+              border-color var(--dur-mid);
   will-change: transform;
 }
 .expertise-item::before {
@@ -648,35 +593,60 @@ img, video { max-width: 100%; display: block; }
 .expertise-item:hover { transform: translateY(-4px); border-left-color: var(--gold); box-shadow: 0 10px 24px rgba(85,107,47,0.11); }
 .expertise-item:hover::before { transform: translateX(120%); }
 
+.expertise-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(85,107,47,0.10), rgba(196,168,90,0.12));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+  transition: background var(--dur-mid);
+}
+.expertise-item:hover .expertise-icon {
+  background: linear-gradient(135deg, rgba(85,107,47,0.16), rgba(196,168,90,0.20));
+}
+
 .expertise-label {
   font-family: var(--font-body);
   font-size: 13.5px; font-weight: 600;
-  color: var(--text-dark); letter-spacing: 0.1px; line-height: 1.3;
+  color: var(--text-dark); letter-spacing: 0.1px;
+  line-height: 1.3;
 }
 .expertise-label span {
   display: block; font-size: 11px; font-weight: 400;
   color: var(--text-muted); margin-top: 2px; letter-spacing: 0;
 }
+
 .expertise-grid li:last-child:nth-child(odd) {
-  grid-column: 1 / -1; max-width: 310px; margin: 0 auto; width: 100%;
+  grid-column: 1 / -1;
+  max-width: 310px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .about-closing {
   font-family: var(--font-display);
-  font-size: 16px !important; font-style: italic; font-weight: 400;
+  font-size: 16px !important;
+  font-style: italic;
+  font-weight: 400;
   color: var(--text-muted) !important;
-  max-width: 500px; margin: 0 auto !important; line-height: 1.88 !important;
+  max-width: 500px;
+  margin: 0 auto !important;
+  line-height: 1.88 !important;
 }
 
 /* ===============================
    PRODUCTS HERO
 ================================ */
 .products-hero {
-  padding: 90px 24px; text-align: center;
-  background: #f5efe6; position: relative; overflow: hidden;
+  padding: 90px 24px;
+  text-align: center;
+  background: #f5efe6;
+  position: relative; overflow: hidden;
 }
 .products-hero::before {
-  content: ""; position: absolute; inset: 0;
+  content: "";
+  position: absolute; inset: 0;
   background: radial-gradient(ellipse at 60% 40%, rgba(196,168,90,0.07) 0%, transparent 65%);
   pointer-events: none;
 }
@@ -710,10 +680,14 @@ img, video { max-width: 100%; display: block; }
 }
 .testimonial {
   display: none;
-  padding: 50px 54px; border-radius: var(--radius);
-  background: white; border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: var(--shadow-soft); text-align: center;
-  position: relative; word-break: break-word; overflow-wrap: break-word;
+  padding: 50px 54px;
+  border-radius: var(--radius);
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  position: relative;
+  word-break: break-word; overflow-wrap: break-word;
 }
 .testimonial::before {
   content: "\201C";
@@ -735,11 +709,14 @@ img, video { max-width: 100%; display: block; }
   line-height: 1.95; color: rgba(44,44,44,0.80);
 }
 .testimonial h4 {
-  margin-top: 22px; font-family: var(--font-body);
+  margin-top: 22px;
+  font-family: var(--font-body);
   font-size: 11.5px; font-weight: 600;
   color: var(--olive); text-transform: uppercase; letter-spacing: 1.5px;
 }
-.slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.slider-dots {
+  display: flex; justify-content: center; gap: 8px; margin-top: 24px;
+}
 .slider-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: rgba(196,168,90,0.25);
@@ -769,7 +746,8 @@ img, video { max-width: 100%; display: block; }
 .projects-grid img, .projects-grid video {
   width: 100%; height: 240px; object-fit: cover;
   background: #f0ece4; border-radius: var(--radius);
-  border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-soft);
   transition: transform var(--dur-mid) var(--ease-out), box-shadow var(--dur-mid);
   cursor: pointer; will-change: transform; display: block;
 }
@@ -798,7 +776,7 @@ footer::before {
 }
 
 /* ===============================
-   MENU OVERLAY
+   MENU OVERLAY BACKDROP
 ================================ */
 .menu-overlay {
   position: fixed; inset: 0;
@@ -824,13 +802,13 @@ footer::before {
 ════════════════════════════════ */
 @media (max-width: 768px) {
   :root {
-    --header-h: 72px;
+    --header-h: 66px;
     --dur-mid:  0.38s;
     --dur-slow: 0.55s;
   }
 
   body { overflow-x: hidden; }
-  .logo { height: 58px; }
+  .logo { height: 50px; }
 
   .mobile-menu { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(254,252,246,0.99); }
 
@@ -874,14 +852,37 @@ footer::before {
   .products-hero { padding: 60px 16px; }
 
   .grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+
+  /* ── EMOJI SIZE REDUCTION ON MOBILE ── */
+
+  /* About & service cards — was 32px inline style */
+  .about-card > div[style*="font-size:32px"],
+  .service-box > div[style*="font-size:32px"],
+  .card > div[style*="font-size:32px"] {
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Contact page emojis */
+  .contact-emoji {
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Expertise icon emojis */
+  .expertise-icon {
+    font-size: 13px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
 }
 
 /* ════════════════════════════════
    RESPONSIVE ≤ 420px
 ════════════════════════════════ */
 @media (max-width: 420px) {
-  :root { --header-h: 66px; }
-  .logo { height: 52px; }
+  :root { --header-h: 62px; }
+  .logo { height: 44px; }
   .section { padding: 48px 12px; }
   .section h2 { font-size: 23px; }
   .hero-content { padding: 22px 14px; }
@@ -889,5 +890,25 @@ footer::before {
   .projects-grid img, .projects-grid video { height: 210px; }
   .testimonial { padding: 22px 14px; }
   .about-card { padding: 20px 14px; }
+  .about-services ul li { font-size: 13px; padding: 12px 14px; }
   .parallax-strip { height: 170px; }
+
+  /* Even smaller on very small phones */
+  .about-card > div[style*="font-size:32px"],
+  .service-box > div[style*="font-size:32px"],
+  .card > div[style*="font-size:32px"] {
+    font-size: 15px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .contact-emoji {
+    font-size: 17px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .expertise-icon {
+    font-size: 11px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
 }
