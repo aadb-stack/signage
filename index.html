@@ -21,35 +21,61 @@
       background-repeat: no-repeat;
       z-index: 0;
       opacity: 0;
+      /* Ken Burns zoom — starts at 100%, slowly grows to 115% over 16s */
+      transform: scale(1);
+      will-change: opacity, transform;
     }
 
-    /* s1: Times Square busy night, neon + billboards */
+    /* s1 */
     .bg-slide.s1 {
       background-image: url("https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=90&auto=format&fit=crop");
-      animation: bgFade 16s ease-in-out infinite 0s;
+      animation:
+        bgFade   16s ease-in-out infinite 0s,
+        bgZoom   16s ease-in-out infinite 0s;
     }
-    /* s2: Tokyo Shinjuku neon signs street at night — verified */
+    /* s2 */
     .bg-slide.s2 {
       background-image: url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1800&q=90&auto=format&fit=crop");
-      animation: bgFade 16s ease-in-out infinite 4s;
+      animation:
+        bgFade   16s ease-in-out infinite 4s,
+        bgZoom   16s ease-in-out infinite 4s;
     }
-    /* s3: Rainy night Tokyo neon street — confirmed */
+    /* s3 */
     .bg-slide.s3 {
       background-image: url("https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1800&q=90&auto=format&fit=crop");
-      animation: bgFade 16s ease-in-out infinite 8s;
+      animation:
+        bgFade   16s ease-in-out infinite 8s,
+        bgZoom   16s ease-in-out infinite 8s;
     }
-    /* s4: Las Vegas neon strip at night — confirmed */
+    /* s4 */
     .bg-slide.s4 {
       background-image: url("https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=1800&q=90&auto=format&fit=crop");
-      animation: bgFade 16s ease-in-out infinite 12s;
+      animation:
+        bgFade   16s ease-in-out infinite 12s,
+        bgZoom   16s ease-in-out infinite 12s;
     }
 
+    /* Fade keyframes — unchanged */
     @keyframes bgFade {
       0%   { opacity: 0; }
       8%   { opacity: 1; }
       33%  { opacity: 1; }
       42%  { opacity: 0; }
       100% { opacity: 0; }
+    }
+
+    /*
+      Ken Burns zoom:
+      - starts at scale(1) when image fades in (0%)
+      - slowly grows to scale(1.14) by the time it fades out (~42%)
+      - snaps back to scale(1) while invisible so it's ready for the next cycle
+      The zoom rate is deliberately slow & cinematic — noticeable but never jarring.
+    */
+    @keyframes bgZoom {
+      0%   { transform: scale(1);    }
+      42%  { transform: scale(1.14); }
+      43%  { transform: scale(1);    } /* instant reset while opacity is 0 */
+      100% { transform: scale(1);    }
     }
 
     /* Dark overlay */
@@ -143,6 +169,14 @@
 
     @media (max-width: 768px) {
       .bg-slide { background-position: 60% center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bg-slide { animation: bgFade 16s ease-in-out infinite; }
+      .bg-slide.s1 { animation-delay: 0s;  }
+      .bg-slide.s2 { animation-delay: 4s;  }
+      .bg-slide.s3 { animation-delay: 8s;  }
+      .bg-slide.s4 { animation-delay: 12s; }
     }
   </style>
 </head>
