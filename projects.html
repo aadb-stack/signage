@@ -6,161 +6,63 @@
   <title>Projects | Sign Makers Pune</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    #projects.section { padding-bottom: 100px; }
-
-    .projects-intro {
-      max-width: 580px; margin: 0 auto 52px; text-align: center;
-    }
-    .projects-intro p { font-size: 16px; color: var(--text-muted); line-height: 1.85; margin-top: 10px; font-weight: 300; }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 16px;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 4px;
-    }
-
-    .project-item {
-      position: relative; border-radius: 14px; overflow: hidden;
-      background: #f0ece4; aspect-ratio: 4/3;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      transition: transform 0.34s cubic-bezier(0.22,1,0.36,1), box-shadow 0.34s;
-      will-change: transform;
-    }
-    .project-item:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(85,107,47,0.16); z-index:2; }
-
-    .project-item img {
-      width:100%; height:100%; object-fit:cover; display:block;
-      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
-    }
-    .project-item:hover img { transform: scale(1.04); }
-
-    /* Gradient overlay on hover */
-    .project-item::after {
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(to bottom,transparent 50%,rgba(20,34,10,0.58) 100%);
-      opacity:0; transition:opacity 0.32s; pointer-events:none;
-    }
-    .project-item:hover::after { opacity:1; }
-
-    /* Gold border reveal */
-    .project-item::before {
-      content:""; position:absolute; inset:0;
-      border-radius:14px;
-      box-shadow:inset 0 0 0 2px rgba(196,168,90,0);
-      transition:box-shadow 0.32s; z-index:3; pointer-events:none;
-    }
-    .project-item:hover::before { box-shadow:inset 0 0 0 2px rgba(196,168,90,0.5); }
-
-    .zoom-icon {
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%) scale(0.7);
-      opacity:0; z-index:4;
-      width:44px; height:44px;
-      background:rgba(255,255,255,0.92);
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      transition:opacity 0.26s, transform 0.26s cubic-bezier(0.22,1,0.36,1);
-    }
-    .zoom-icon svg { width:20px; height:20px; stroke:var(--olive); fill:none; stroke-width:2; stroke-linecap:round; }
-    .project-item:hover .zoom-icon { opacity:1; transform:translate(-50%,-50%) scale(1); }
-
-    .project-item.video-tile { aspect-ratio:4/3; }
-    .project-item.video-tile video { width:100%; height:100%; object-fit:cover; display:block; }
-    .project-item.video-tile .zoom-icon { display:none; }
-    .project-item.video-tile::after { display:none; }
-
-    /* LIGHTBOX */
-    .lightbox {
-      position:fixed; inset:0; z-index:999999;
-      background:rgba(6,10,4,0.96);
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; pointer-events:none;
-      transition:opacity 0.3s ease; padding:20px;
-    }
-    .lightbox.open { opacity:1; pointer-events:all; }
-    .lightbox-inner { position:relative; max-width:90vw; max-height:88vh; display:flex; align-items:center; justify-content:center; }
-    .lightbox-img {
-      max-width:90vw; max-height:85vh; width:auto; height:100%;
-      border-radius:14px; box-shadow:0 30px 80px rgba(0,0,0,0.65);
-      transform:scale(0.92);
-      transition:transform 0.32s cubic-bezier(0.22,1,0.36,1);
-      display:block; object-fit:cover;
-    }
-    .lightbox.open .lightbox-img { transform:scale(1); }
-    .lightbox-counter {
-      position:absolute; bottom:-36px; left:50%; transform:translateX(-50%);
-      font-family:var(--font-body); font-size:12px; font-weight:500;
-      color:rgba(255,255,255,0.40); letter-spacing:1.5px; white-space:nowrap;
-    }
-    .lightbox-close {
-      position:fixed; top:20px; right:24px;
-      background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.14);
-      border-radius:50%; width:44px; height:44px;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; color:white; font-size:20px;
-      transition:background 0.2s, transform 0.3s; z-index:10;
-    }
-    .lightbox-close:hover { background:rgba(255,255,255,0.20); transform:rotate(90deg); }
-    .lightbox-prev,.lightbox-next {
-      position:fixed; top:50%; transform:translateY(-50%);
-      background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.14);
-      border-radius:50%; width:48px; height:48px;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; color:white;
-      transition:background 0.2s, transform 0.2s; z-index:10;
-    }
-    .lightbox-prev{left:20px;} .lightbox-next{right:20px;}
-    .lightbox-prev:hover { background:rgba(255,255,255,0.20); transform:translateY(-50%) scale(1.08); }
-    .lightbox-next:hover { background:rgba(255,255,255,0.20); transform:translateY(-50%) scale(1.08); }
-    .lightbox-prev svg,.lightbox-next svg,.lightbox-close svg { width:20px; height:20px; stroke:white; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-
-    @media(max-width:1024px) { .projects-grid{grid-template-columns:repeat(2,1fr);} }
-    @media(max-width:768px) { .projects-grid{grid-template-columns:repeat(2,1fr);gap:10px;} .lightbox-prev{left:8px;} .lightbox-next{right:8px;} .lightbox-img{max-width:95vw;max-height:80vh;} }
-    @media(max-width:420px) { .projects-grid{gap:8px;} }
+    #projects.section{padding-bottom:100px;}
+    .projects-intro{max-width:580px;margin:0 auto 52px;text-align:center;}
+    .projects-intro p{font-size:16px;color:var(--text-muted);line-height:1.85;margin-top:10px;font-weight:300;}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1120px;margin:0 auto;padding:0 4px;}
+    .project-item{position:relative;border-radius:14px;overflow:hidden;background:#f0ece4;aspect-ratio:4/3;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.08);transition:transform 0.34s cubic-bezier(0.22,1,0.36,1),box-shadow 0.34s;will-change:transform;}
+    .project-item:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(85,107,47,0.16);z-index:2;}
+    .project-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.45s cubic-bezier(0.22,1,0.36,1);}
+    .project-item:hover img{transform:scale(1.04);}
+    .project-item::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(20,34,10,0.58) 100%);opacity:0;transition:opacity 0.32s;pointer-events:none;}
+    .project-item:hover::after{opacity:1;}
+    .project-item::before{content:"";position:absolute;inset:0;border-radius:14px;box-shadow:inset 0 0 0 2px rgba(196,168,90,0);transition:box-shadow 0.32s;z-index:3;pointer-events:none;}
+    .project-item:hover::before{box-shadow:inset 0 0 0 2px rgba(196,168,90,0.5);}
+    .zoom-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.7);opacity:0;z-index:4;width:44px;height:44px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:opacity 0.26s,transform 0.26s cubic-bezier(0.22,1,0.36,1);}
+    .zoom-icon svg{width:20px;height:20px;stroke:var(--olive);fill:none;stroke-width:2;stroke-linecap:round;}
+    .project-item:hover .zoom-icon{opacity:1;transform:translate(-50%,-50%) scale(1);}
+    .project-item.video-tile{aspect-ratio:4/3;}
+    .project-item.video-tile video{width:100%;height:100%;object-fit:cover;display:block;}
+    .project-item.video-tile .zoom-icon,.project-item.video-tile::after{display:none;}
+    .lightbox{position:fixed;inset:0;z-index:999999;background:rgba(6,10,4,0.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;padding:20px;}
+    .lightbox.open{opacity:1;pointer-events:all;}
+    .lightbox-inner{position:relative;max-width:90vw;max-height:88vh;display:flex;align-items:center;justify-content:center;}
+    .lightbox-img{max-width:90vw;max-height:85vh;width:auto;height:100%;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.65);transform:scale(0.92);transition:transform 0.32s cubic-bezier(0.22,1,0.36,1);display:block;object-fit:cover;}
+    .lightbox.open .lightbox-img{transform:scale(1);}
+    .lightbox-counter{position:absolute;bottom:-36px;left:50%;transform:translateX(-50%);font-family:var(--font-body);font-size:12px;font-weight:500;color:rgba(255,255,255,0.40);letter-spacing:1.5px;white-space:nowrap;}
+    .lightbox-close{position:fixed;top:20px;right:24px;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.14);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;transition:background 0.2s,transform 0.3s;z-index:10;}
+    .lightbox-close:hover{background:rgba(255,255,255,0.20);transform:rotate(90deg);}
+    .lightbox-prev,.lightbox-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.14);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;transition:background 0.2s,transform 0.2s;z-index:10;}
+    .lightbox-prev{left:20px;}.lightbox-next{right:20px;}
+    .lightbox-prev:hover{background:rgba(255,255,255,0.20);transform:translateY(-50%) scale(1.08);}
+    .lightbox-next:hover{background:rgba(255,255,255,0.20);transform:translateY(-50%) scale(1.08);}
+    .lightbox-prev svg,.lightbox-next svg,.lightbox-close svg{width:20px;height:20px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    @media(max-width:1024px){.projects-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){.projects-grid{grid-template-columns:repeat(2,1fr);gap:10px;}.lightbox-prev{left:8px;}.lightbox-next{right:8px;}.lightbox-img{max-width:95vw;max-height:80vh;}}
+    @media(max-width:420px){.projects-grid{gap:8px;}}
   </style>
 </head>
 <body>
-
   <header class="site-header">
     <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-    <a href="index.html" class="logo-link">
-      <img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo">
-    </a>
+    <a href="index.html" class="logo-link"><img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo"></a>
   </header>
-
   <div id="menuOverlay" class="menu-overlay"></div>
   <nav id="mobileMenu" class="mobile-menu">
     <button class="close-menu" onclick="toggleMenu()">✖</button>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="products.html">Products</a>
-    <a href="projects.html" class="active-page">Projects</a>
-    <a href="reviews.html">Testimonials</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+    <a href="products.html">Products</a><a href="projects.html" class="active-page">Projects</a>
+    <a href="reviews.html">Testimonials</a><a href="contact.html">Contact</a>
   </nav>
-
-  <!-- PARALLAX HERO -->
   <div class="parallax-strip" style="height:400px;">
     <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=85&auto=format&fit=crop');"></div>
-    <div class="strip-label">
-      Our Projects
-      <span>A Showcase of Premium Signage Across Pune</span>
-    </div>
+    <div class="strip-label">Our Projects<span>A Showcase of Premium Signage Across Pune</span></div>
   </div>
-
   <section class="section" id="projects">
     <span class="eyebrow">Our Portfolio</span>
     <h2>Work We're Proud Of</h2>
     <div class="ornament"><span></span></div>
-    <div class="projects-intro">
-      <p>A curated showcase of our premium signage and branding work — every project crafted with precision, quality materials, and a commitment to excellence.</p>
-    </div>
-
+    <div class="projects-intro"><p>A curated showcase of our premium signage and branding work — every project crafted with precision, quality materials, and a commitment to excellence.</p></div>
     <div class="projects-grid">
       <div class="project-item" data-index="0"><img src="https://i.ibb.co/RGx43F3X/2023-02-08-12.webp" alt="Project 1" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="1"><img src="https://i.ibb.co/JFzvp6Dk/2023-02-08-11.webp" alt="Project 2" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
@@ -168,8 +70,7 @@
       <div class="project-item" data-index="3"><img src="https://i.ibb.co/vCn0cRWM/2023-02-08-10.webp" alt="Project 4" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="4"><img src="https://i.ibb.co/hNMkm03/2021-06-18-12.webp" alt="Project 5" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="5"><img src="https://i.ibb.co/ksWM05Kq/2023-02-08-9.webp" alt="Project 6" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
-      <div class="project-item" data-index="6"><img src="https://i.ibb.co/Q7n28019/2021-06-18-11.webp" 
-      alt="Project 8" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
+      <div class="project-item" data-index="7"><img src="https://i.ibb.co/J941w64/2023-02-08-8.webp" alt="Project 8" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="8"><img src="https://i.ibb.co/1f0qkLvN/2023-02-08-7.webp" alt="Project 9" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="9"><img src="https://i.ibb.co/svfbrLY6/2021-06-18-10.webp" alt="Project 10" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
       <div class="project-item" data-index="10"><img src="https://i.ibb.co/99Cwz820/2021-06-18-9.webp" alt="Project 11" loading="lazy"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div></div>
@@ -193,68 +94,34 @@
       <div class="project-item video-tile"><video src="videos/project-video.mp4.mp4" controls></video></div>
     </div>
   </section>
-
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <button class="lightbox-prev" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-    <div class="lightbox-inner">
-      <img class="lightbox-img" id="lbImg" src="" alt="">
-      <div class="lightbox-counter" id="lbCounter"></div>
-    </div>
+    <div class="lightbox-inner"><img class="lightbox-img" id="lbImg" src="" alt=""><div class="lightbox-counter" id="lbCounter"></div></div>
     <button class="lightbox-next" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
   </div>
-
   <footer>© 2026 Sign Makers | All Rights Reserved</footer>
-
   <script src="script.js"></script>
   <script>
-    const items    = Array.from(document.querySelectorAll(".project-item:not(.video-tile)"));
-    const images   = items.map(el => ({ src: el.querySelector("img").src, alt: el.querySelector("img").alt }));
-    const lightbox = document.getElementById("lightbox");
-    const lbImg    = document.getElementById("lbImg");
-    const lbCounter= document.getElementById("lbCounter");
-    let current    = 0;
-
-    function openLightbox(index) {
-      current = index;
-      lbImg.src = images[current].src;
-      lbImg.alt = images[current].alt;
-      lbCounter.textContent = (current+1) + " / " + images.length;
-      lightbox.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-    function closeLightbox() {
-      lightbox.classList.remove("open");
-      document.body.style.overflow = "";
-      setTimeout(() => { lbImg.src = ""; }, 300);
-    }
-    function navigate(dir) {
-      current = (current + dir + images.length) % images.length;
-      lbImg.style.opacity = "0"; lbImg.style.transform = "scale(0.94)";
-      setTimeout(() => {
-        lbImg.src = images[current].src; lbImg.alt = images[current].alt;
-        lbCounter.textContent = (current+1) + " / " + images.length;
-        lbImg.style.opacity = "1"; lbImg.style.transform = "scale(1)";
-      }, 150);
-    }
-    lbImg.style.transition = "opacity 0.15s ease, transform 0.15s ease";
-
-    items.forEach((item,i) => item.addEventListener("click", () => openLightbox(i)));
-    document.getElementById("lbClose").addEventListener("click", closeLightbox);
-    document.getElementById("lbPrev").addEventListener("click", () => navigate(-1));
-    document.getElementById("lbNext").addEventListener("click", () => navigate(1));
-    lightbox.addEventListener("click", e => { if(e.target===lightbox) closeLightbox(); });
-    document.addEventListener("keydown", e => {
-      if(!lightbox.classList.contains("open")) return;
-      if(e.key==="ArrowRight") navigate(1);
-      if(e.key==="ArrowLeft")  navigate(-1);
-      if(e.key==="Escape")     closeLightbox();
-    });
-    let touchStartX = 0;
-    lightbox.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive:true });
-    lightbox.addEventListener("touchend",   e => { const d = touchStartX - e.changedTouches[0].clientX; if(Math.abs(d)>50) navigate(d>0?1:-1); });
+    const items=Array.from(document.querySelectorAll(".project-item:not(.video-tile)"));
+    const images=items.map(el=>({src:el.querySelector("img").src,alt:el.querySelector("img").alt}));
+    const lightbox=document.getElementById("lightbox");
+    const lbImg=document.getElementById("lbImg");
+    const lbCounter=document.getElementById("lbCounter");
+    let current=0;
+    function openLightbox(index){current=index;lbImg.src=images[current].src;lbImg.alt=images[current].alt;lbCounter.textContent=(current+1)+" / "+images.length;lightbox.classList.add("open");document.body.style.overflow="hidden";}
+    function closeLightbox(){lightbox.classList.remove("open");document.body.style.overflow="";setTimeout(()=>{lbImg.src="";},300);}
+    function navigate(dir){current=(current+dir+images.length)%images.length;lbImg.style.opacity="0";lbImg.style.transform="scale(0.94)";setTimeout(()=>{lbImg.src=images[current].src;lbImg.alt=images[current].alt;lbCounter.textContent=(current+1)+" / "+images.length;lbImg.style.opacity="1";lbImg.style.transform="scale(1)";},150);}
+    lbImg.style.transition="opacity 0.15s ease, transform 0.15s ease";
+    items.forEach((item,i)=>item.addEventListener("click",()=>openLightbox(i)));
+    document.getElementById("lbClose").addEventListener("click",closeLightbox);
+    document.getElementById("lbPrev").addEventListener("click",()=>navigate(-1));
+    document.getElementById("lbNext").addEventListener("click",()=>navigate(1));
+    lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeLightbox();});
+    document.addEventListener("keydown",e=>{if(!lightbox.classList.contains("open"))return;if(e.key==="ArrowRight")navigate(1);if(e.key==="ArrowLeft")navigate(-1);if(e.key==="Escape")closeLightbox();});
+    let touchStartX=0;
+    lightbox.addEventListener("touchstart",e=>{touchStartX=e.touches[0].clientX;},{passive:true});
+    lightbox.addEventListener("touchend",e=>{const d=touchStartX-e.changedTouches[0].clientX;if(Math.abs(d)>50)navigate(d>0?1:-1);});
   </script>
 </body>
-</html>
 </html>
