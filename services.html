@@ -2,102 +2,234 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Sign Makers Pune</title>
   <link rel="stylesheet" href="style.css">
-</head>
+  <style>
+    /* Service cards — icon above, large + centred */
+    .service-icon {
+      font-size: 38px;
+      margin-bottom: 18px;
+      display: block;
+      line-height: 1;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .service-box:hover .service-icon { transform: scale(1.18) translateY(-3px); }
 
+    /* Gold badge on each card */
+    .service-box::after {
+      border-radius: var(--radius) !important;
+    }
+
+    /* Process steps strip */
+    .process-strip {
+      background: #f3efe6;
+      padding: 80px 64px;
+      text-align: center;
+    }
+    .process-strip h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px,3.5vw,40px);
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .process-strip h2::after {
+      content:""; display:block; width:48px; height:2px;
+      background:linear-gradient(90deg,var(--gold),var(--olive));
+      margin:12px auto 0; border-radius:2px; opacity:.65;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 52px auto 0;
+    }
+    .process-step {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px 22px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.36s cubic-bezier(0.22,1,0.36,1), box-shadow 0.36s;
+    }
+    .process-step:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 600;
+      color: var(--gold);
+      opacity: 0.18;
+      line-height: 1;
+      position: absolute;
+      top: 10px; right: 16px;
+    }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--olive);
+      margin: 10px 0 8px;
+    }
+    .step-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* CTA band */
+    .services-cta {
+      background: var(--beige-bg);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .services-cta h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px,3.5vw,38px);
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+    .services-cta h3 em { font-style: italic; color: var(--olive); }
+    .services-cta p {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    @media (max-width:768px) {
+      .process-steps { grid-template-columns: repeat(2,1fr); }
+      .process-strip  { padding: 56px 18px; }
+    }
+    @media (max-width:480px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
-
-    <!-- Hamburger Left -->
-    <div class="hamburger" onclick="toggleMenu()">
-      ☰
-    </div>
-
-  <!-- Logo RIGHT -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</button>
     <a href="index.html" class="logo-link">
-      <img
-        src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
-        alt="Sign Makers Pune Logo"
-        class="logo"
-      />
+      <img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo">
     </a>
-
-
   </header>
 
+  <div id="menuOverlay" class="menu-overlay"></div>
   <nav id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="toggleMenu()">✖</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html" class="active-page">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <!-- CLOSE BUTTON -->
-  <button class="close-menu" onclick="toggleMenu()">✖</button>
+  <!-- PARALLAX HERO STRIP -->
+  <div class="parallax-strip" style="height:400px;">
+    <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=85&auto=format&fit=crop');"></div>
+    <div class="strip-label">
+      Our Services
+      <span>Precision · Craft · Excellence</span>
+    </div>
+  </div>
 
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
-  <a href="projects.html">Projects</a>
-  <a href="reviews.html">Testimonials</a>
-  <a href="contact.html">Contact</a>
+  <!-- SERVICES GRID -->
+  <section id="services" class="section">
+    <span class="eyebrow">What We Offer</span>
+    <h2>Signage That Speaks</h2>
+    <div class="ornament"><span></span></div>
+    <p>Advanced signage and branding solutions using modern cutting technology and premium materials — built for businesses that want to make a lasting impression.</p>
 
-</nav>
-
-  <!-- SERVICES PAGE CONTENT -->
-  <section id="services" class="section light">
-
-    <h2>Our Services</h2>
-
-    <p>
-      We provide advanced signage and branding solutions using modern cutting
-      technology and premium materials. ⚡
-    </p>
-
-    <div class="services-grid">
+    <div class="services-grid reveal-group">
 
       <div class="service-box">
-        🔧
+        <span class="service-icon">🔧</span>
         <h3>CNC Router Cutting</h3>
-        <p>Precision cutting for wood, acrylic, MDF, and custom signage boards.</p>
+        <p>Precision cutting for wood, acrylic, MDF, and custom signage boards with clean, consistent edges every time.</p>
       </div>
 
       <div class="service-box">
-        🔥
+        <span class="service-icon">🔥</span>
         <h3>Laser Cutting</h3>
-        <p>High-detail laser cutting for premium designs and accurate finishing.</p>
+        <p>High-detail laser cutting for premium designs, intricate patterns, and flawless accurate finishing on any material.</p>
       </div>
 
       <div class="service-box">
-        ✂️
+        <span class="service-icon">✂️</span>
         <h3>Vinyl Cutting</h3>
-        <p>Custom vinyl stickers, branding graphics, and professional lettering.</p>
+        <p>Custom vinyl stickers, branding graphics, and professional lettering with rich colour and lasting adhesion.</p>
       </div>
 
       <div class="service-box">
-        💡
+        <span class="service-icon">💡</span>
         <h3>LED Boards</h3>
-        <p>Bright LED glow signboards for shops, showrooms, and businesses.</p>
+        <p>Bright, energy-efficient LED glow signboards for shops, showrooms, and businesses — visible day and night.</p>
       </div>
 
       <div class="service-box">
-        ✨
+        <span class="service-icon">✨</span>
         <h3>Profile Letters</h3>
-        <p>3D profile letter signage that gives your brand a premium look.</p>
+        <p>Stunning 3D profile letter signage in steel, acrylic, or brass that gives your brand a commanding premium look.</p>
       </div>
 
       <div class="service-box">
-        🏷️
+        <span class="service-icon">🏷️</span>
         <h3>Acrylic Boards</h3>
-        <p>Stylish acrylic name boards with modern, clean, luxury finishing.</p>
+        <p>Sleek acrylic name boards with modern, clean, luxury finishing — perfect for offices, clinics, and retail spaces.</p>
       </div>
 
     </div>
-
   </section>
 
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
+  <!-- HOW WE WORK -->
+  <div class="process-strip">
+    <span class="eyebrow">How We Work</span>
+    <h2>Our Process</h2>
+    <div class="process-steps reveal-group">
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <div style="font-size:28px;margin-bottom:6px;">💬</div>
+        <div class="step-title">Consultation</div>
+        <p class="step-desc">We understand your brand, space, and budget to craft the perfect solution.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <div style="font-size:28px;margin-bottom:6px;">🎨</div>
+        <div class="step-title">Design</div>
+        <p class="step-desc">Our team creates a bespoke design aligned with your visual identity.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <div style="font-size:28px;margin-bottom:6px;">🔩</div>
+        <div class="step-title">Fabrication</div>
+        <p class="step-desc">Precision cutting, assembly, and finishing with premium materials.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">04</div>
+        <div style="font-size:28px;margin-bottom:6px;">🚀</div>
+        <div class="step-title">Installation</div>
+        <p class="step-desc">Clean, professional installation at your location — on time, every time.</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- CTA -->
+  <div class="services-cta">
+    <h3>Ready to <em>Elevate</em> Your Brand?</h3>
+    <p>Get in touch today and let's create signage that makes your business unforgettable.</p>
+    <a href="contact.html" class="hero-btn">Get a Quote</a>
+  </div>
+
+  <footer>© 2026 Sign Makers | All Rights Reserved</footer>
+  <script src="script.js"></script>
 </body>
 </html>
