@@ -2,136 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Sign Makers </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Sign Makers Pune</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
-
-    <!-- Hamburger Left -->
-    <div class="hamburger" onclick="toggleMenu()">
-      ☰
-    </div>
-
-     <!-- Logo RIGHT -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">☰</button>
     <a href="index.html" class="logo-link">
-      <img
-        src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg"
-        alt="Sign Makers Pune Logo"
-        class="logo"
-      />
+      <img src="https://i.ibb.co/8D9h6fCw/Whats-App-Image-2026-02-07-at-3-25-08-PM-1.jpg" alt="Sign Makers Pune Logo" class="logo">
     </a>
-
-
   </header>
 
- <nav id="mobileMenu" class="mobile-menu">
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <button class="close-menu" onclick="toggleMenu()">✖</button>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active-page">About</a>
+    <a href="services.html">Services</a>
+    <a href="products.html">Products</a>
+    <a href="projects.html">Projects</a>
+    <a href="reviews.html">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-  <!-- CLOSE BUTTON -->
-  <button class="close-menu" onclick="toggleMenu()">✖</button>
+  <!-- PARALLAX HERO STRIP -->
+  <div class="parallax-strip" style="height:420px;">
+    <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop');"></div>
+    <div class="strip-label">
+      About Sign Makers
+      <span>Craftsmanship · Pune · Est. 2010</span>
+    </div>
+  </div>
 
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="products.html">Products</a>
-  <a href="projects.html">Projects</a>
-  <a href="reviews.html">Testimonials</a>
-  <a href="contact.html">Contact</a>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
 
-</nav>
+    <span class="eyebrow">Who We Are</span>
+    <h2>A Legacy of Premium Signage</h2>
+    <div class="ornament"><span></span></div>
 
-
-  <!-- ABOUT PAGE CONTENT -->
-  <section id="about" class="section light">
-
-    <h2>About Sign Makers</h2>
-
-    <!-- Intro Text -->
-    <div class="about-intro">
-      <p>
-        Welcome to <b>Sign Makers </b> — a premium signage and branding studio based in
-        <b>Shukrawar Peth, Pune</b>. 🌿✨
-      </p>
-
-      <p>
-        We specialize in crafting high-quality signboards, modern shop branding, and custom
-        fabrication solutions that help businesses stand out with confidence.
-      </p>
-
-      <p>
-        A signboard is more than just a name — it is the first impression of your brand.
-        That’s why we combine technology, creativity, and precision workmanship to deliver
-        signage that feels professional, elegant, and long-lasting. 🚀
-      </p>
+    <div class="about-intro reveal">
+      <p>Welcome to <b>Sign Makers Pune</b> — a premium signage and branding studio rooted in <b>Shukrawar Peth, Pune.</b></p>
+      <p>We specialise in crafting high-quality signboards, modern shop branding, and custom fabrication solutions that help businesses stand out with confidence.</p>
+      <p>A signboard is more than just a name — it is the first impression of your brand. That's why we combine technology, creativity, and precision workmanship to deliver signage that feels professional, elegant, and long-lasting.</p>
     </div>
 
-    <!-- Highlight Cards -->
+    <!-- HIGHLIGHT CARDS -->
     <div class="about-highlights">
 
       <div class="about-card">
-        🌟
+        <div style="font-size:32px;margin-bottom:14px;">🌟</div>
         <h3>Premium Quality Materials</h3>
-        <p>
-          We use acrylic, stainless steel, LED modules, and durable finishes
-          for signage that looks luxurious and lasts for years.
-        </p>
+        <p>We use acrylic, stainless steel, LED modules, and durable finishes for signage that looks luxurious and lasts for years.</p>
       </div>
 
       <div class="about-card">
-        🎨
+        <div style="font-size:32px;margin-bottom:14px;">🎨</div>
         <h3>Modern Creative Designs</h3>
-        <p>
-          Every board is custom-designed to match your business identity and create a
-          powerful visual presence in the market.
-        </p>
+        <p>Every board is custom-designed to match your business identity and create a powerful visual presence in the market.</p>
       </div>
 
       <div class="about-card">
-        ⚡
+        <div style="font-size:32px;margin-bottom:14px;">⚡</div>
         <h3>Fast & Reliable Execution</h3>
-        <p>
-          From fabrication to installation, we ensure quick delivery, clean finishing,
-          and professional service across Pune.
-        </p>
+        <p>From fabrication to installation, we ensure quick delivery, clean finishing, and professional service across Pune.</p>
       </div>
 
       <div class="about-card">
-        🤝
+        <div style="font-size:32px;margin-bottom:14px;">🤝</div>
         <h3>Trusted by Local Businesses</h3>
-        <p>
-          Hundreds of shops, offices, and showrooms trust Sign Makers Pune for honest pricing,
-          premium output, and satisfaction.
-        </p>
+        <p>Hundreds of shops, offices, and showrooms trust Sign Makers Pune for honest pricing, premium output, and satisfaction.</p>
       </div>
 
     </div>
 
-    <!-- Services List -->
+    <!-- EXPERTISE -->
     <div class="about-services">
-      <h3>Our Expertise Includes</h3>
 
-      <ul>
-        <li>✅ LED Glow Sign Boards</li>
-        <li>✅ Acrylic 3D Letter Boards</li>
-        <li>✅ High rise Sky signs</li>
-        <li>✅ Shop Name Boards & Custom Designs</li>
-        <li>✅ Complete Branding Solutions</li>
+      <div class="about-services-header reveal">
+        <h3>Our Expertise</h3>
+        <p>From a single nameplate to a complete shop branding solution — we do it all with precision.</p>
+      </div>
+
+      <ul class="expertise-grid">
+        <li class="expertise-item">
+          <div class="expertise-icon">💡</div>
+          <div class="expertise-label">LED Glow Sign Boards <span>Outdoor &amp; indoor illumination</span></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon">🔲</div>
+          <div class="expertise-label">Acrylic 3D Letter Boards <span>Clean, premium modern look</span></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon">🏙️</div>
+          <div class="expertise-label">High-Rise Sky Signs <span>Landmark visibility</span></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon">🪧</div>
+          <div class="expertise-label">Shop Name Boards <span>Custom designs for every business</span></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon">✨</div>
+          <div class="expertise-label">Complete Branding Solutions <span>End-to-end store identity</span></div>
+        </li>
       </ul>
 
-      <p class="about-closing">
-        No matter the size of your business, we make sure your brand gets noticed.
-        Let’s build something extraordinary together. 💡
+      <p class="about-closing reveal">
+        "No matter the size of your business, we make sure your brand gets noticed.<br>
+        Let's build something extraordinary together."
       </p>
+
     </div>
 
   </section>
 
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
+  <!-- PARALLAX QUOTE STRIP -->
+  <div class="parallax-strip">
+    <div class="parallax-strip-bg" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80&auto=format&fit=crop');"></div>
+    <div class="strip-label">
+      "Your brand deserves to be <em>seen.</em>"
+      <span>Sign Makers Pune</span>
+    </div>
+  </div>
 
+  <footer>© 2026 Sign Makers | All Rights Reserved</footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
